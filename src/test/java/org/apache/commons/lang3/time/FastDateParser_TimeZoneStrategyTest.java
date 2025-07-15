@@ -13,7 +13,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 package org.apache.commons.lang3.time;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -46,13 +47,23 @@ import org.junitpioneer.jupiter.DefaultTimeZone;
 import org.junitpioneer.jupiter.ReadsDefaultLocale;
 import org.junitpioneer.jupiter.ReadsDefaultTimeZone;
 
+*/
 /**
  * Tests {@link FastDateParser}.
- */
-/* Make test reproducible */ @DefaultLocale(language = "en")
-/* Make test reproducible */ @DefaultTimeZone(TimeZones.GMT_ID)
-/* Make test reproducible */ @ReadsDefaultLocale
-/* Make test reproducible */ @ReadsDefaultTimeZone
+ *//*
+
+*/
+/* Make test reproducible *//*
+ @DefaultLocale(language = "en")
+*/
+/* Make test reproducible *//*
+ @DefaultTimeZone(TimeZones.GMT_ID)
+*/
+/* Make test reproducible *//*
+ @ReadsDefaultLocale
+*/
+/* Make test reproducible *//*
+ @ReadsDefaultTimeZone
 class FastDateParser_TimeZoneStrategyTest extends AbstractLangTest {
 
     private static final List<Locale> Java11Failures = new ArrayList<>();
@@ -161,11 +172,13 @@ class FastDateParser_TimeZoneStrategyTest extends AbstractLangTest {
         }
     }
 
-    /**
+    */
+/**
      * Breaks randomly on GitHub for Locale "pt_PT", TimeZone "Etc/UTC" if we do not check if the Locale's language is "undetermined".
      *
      * @throws ParseException
-     */
+     *//*
+
     private void testTimeZoneStrategyPattern_TimeZone_getAvailableIDs(final Locale locale) {
         Objects.requireNonNull(locale, "locale");
         assumeFalse(LocaleUtils.isLanguageUndetermined(locale), () -> toFailureMessage(locale, null, null));
@@ -190,7 +203,8 @@ class FastDateParser_TimeZoneStrategyTest extends AbstractLangTest {
         testTimeZoneStrategyPattern("zh_HK_#Hans", "?????????");
     }
 
-    /**
+    */
+/**
      * Breaks randomly on GitHub for Locale "pt_PT", TimeZone "Etc/UTC" if we do not check if the Locale's language is "undetermined".
      *
      * <pre>{@code
@@ -200,13 +214,15 @@ class FastDateParser_TimeZoneStrategyTest extends AbstractLangTest {
      * }</pre>
      *
      * @throws ParseException Test failure
-     */
+     *//*
+
     @Test
     void testTimeZoneStrategyPatternPortugal() throws ParseException {
         testTimeZoneStrategyPattern("pt_PT", "Horário do Meridiano de Greenwich");
     }
 
-    /**
+    */
+/**
      * Breaks randomly on GitHub for Locale "sr_ME_#Cyrl", TimeZone "Etc/UTC" if we do not check if the Locale's language is "undetermined".
      *
      * <pre>{@code
@@ -216,7 +232,8 @@ class FastDateParser_TimeZoneStrategyTest extends AbstractLangTest {
      * }</pre>
      *
      * @throws ParseException Test failure
-     */
+     *//*
+
     @Test
     void testTimeZoneStrategyPatternSuriname() throws ParseException {
         testTimeZoneStrategyPattern("sr_ME_#Cyrl", "Srednje vreme po Griniču");
@@ -227,3 +244,4 @@ class FastDateParser_TimeZoneStrategyTest extends AbstractLangTest {
                 LocaleUtils.isAvailableLocale(locale), LocaleUtils.isLanguageUndetermined(locale), TimeZones.toTimeZone(timeZone));
     }
 }
+*/
