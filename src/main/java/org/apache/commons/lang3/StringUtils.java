@@ -1352,7 +1352,7 @@ public class StringUtils {
         return false;
     }
 
-    private static void convertRemainingAccentCharacters(final StringBuilder decomposed) {
+    public static void convertRemainingAccentCharacters(final StringBuilder decomposed) {
         for (int i = 0; i < decomposed.length(); i++) {
             final char charAt = decomposed.charAt(i);
             switch (charAt) {
@@ -5236,7 +5236,7 @@ public class StringUtils {
         return str.toLowerCase(LocaleUtils.toLocale(locale));
     }
 
-    private static int[] matches(final CharSequence first, final CharSequence second) {
+    public static int[] matches(final CharSequence first, final CharSequence second) {
         final CharSequence max;
         final CharSequence min;
         if (first.length() > second.length()) {
@@ -5471,7 +5471,7 @@ public class StringUtils {
      *  {@code -1} ({@code INDEX_NOT_FOUND}) if no match or {@code null} string input
      */
     // Shared code between ordinalIndexOf(String, String, int) and lastOrdinalIndexOf(String, String, int)
-    private static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal, final boolean lastIndex) {
+    public static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal, final boolean lastIndex) {
         if (str == null || searchStr == null || ordinal <= 0) {
             return INDEX_NOT_FOUND;
         }
@@ -6429,7 +6429,7 @@ public class StringUtils {
      *             and/or size 0)
      * @since 2.4
      */
-    private static String replaceEach(
+    public static String replaceEach(
             final String text, final String[] searchList, final String[] replacementList, final boolean repeat, final int timeToLive) {
 
         // mchyzer Performance note: This creates very few new objects (one major goal)
@@ -7397,7 +7397,7 @@ public class StringUtils {
      * @return an array of parsed Strings, {@code null} if null String input
      * @since 2.4
      */
-    private static String[] splitByWholeSeparatorWorker(
+    public static String[] splitByWholeSeparatorWorker(
             final String str, final String separator, final int max, final boolean preserveAllTokens) {
         if (str == null) {
             return null;
@@ -7616,7 +7616,7 @@ public class StringUtils {
      * separators are treated as one separator.
      * @return an array of parsed Strings, {@code null} if null String input
      */
-    private static String[] splitWorker(final String str, final char separatorChar, final boolean preserveAllTokens) {
+    public static String[] splitWorker(final String str, final char separatorChar, final boolean preserveAllTokens) {
         // Performance tuned for 2.0 (JDK1.4)
         if (str == null) {
             return null;
@@ -7664,7 +7664,7 @@ public class StringUtils {
      * separators are treated as one separator.
      * @return an array of parsed Strings, {@code null} if null String input
      */
-    private static String[] splitWorker(final String str, final String separatorChars, final int max, final boolean preserveAllTokens) {
+    public static String[] splitWorker(final String str, final String separatorChars, final int max, final boolean preserveAllTokens) {
         // Performance tuned for 2.0 (JDK1.4)
         // Direct code is quicker than StringTokenizer.
         // Also, StringTokenizer uses isSpace() not isWhitespace()
