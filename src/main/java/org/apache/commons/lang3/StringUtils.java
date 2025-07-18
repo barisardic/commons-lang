@@ -2372,7 +2372,7 @@ public class StringUtils {
      * LevenshteinDistance</a> instead
      */
     @Deprecated
-    public static int getLevenshteinDistance(CharSequence s, CharSequence t, final int threshold) {
+    public static int getLevenshteinDistanceWithThreshold(CharSequence s, CharSequence t, final int threshold) {
         if (s == null || t == null) {
             throw new IllegalArgumentException("Strings must not be null");
         }
