@@ -16,9 +16,9 @@
  limitations under the License.
 -->
 <project
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
     <groupId>org.apache.commons</groupId>
     <artifactId>commons-parent</artifactId>
@@ -30,15 +30,15 @@
   <name>Apache Commons Lang</name>
   <inceptionYear>2001</inceptionYear>
   <description>
-  Apache Commons Lang, a package of Java utility classes for the
-  classes that are in java.lang's hierarchy, or are considered to be so
-  standard as to justify existence in java.lang.
+    Apache Commons Lang, a package of Java utility classes for the
+    classes that are in java.lang's hierarchy, or are considered to be so
+    standard as to justify existence in java.lang.
 
-  The code is tested using the latest revision of the JDK for supported
-  LTS releases: 8, 11, 17 and 21 currently.
-  See https://github.com/apache/commons-lang/blob/master/.github/workflows/maven.yml
-  
-  Please ensure your build environment is up-to-date and kindly report any build issues.
+    The code is tested using the latest revision of the JDK for supported
+    LTS releases: 8, 11, 17 and 21 currently.
+    See https://github.com/apache/commons-lang/blob/master/.github/workflows/maven.yml
+
+    Please ensure your build environment is up-to-date and kindly report any build issues.
   </description>
   <url>https://commons.apache.org/proper/commons-lang/</url>
   <ciManagement>
@@ -99,12 +99,12 @@
       <version>3.0.2</version>
       <scope>test</scope>
     </dependency>
-      <dependency>
-          <groupId>junit</groupId>
-          <artifactId>junit</artifactId>
-          <version>4.13.1</version>
-          <scope>test</scope>
-      </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <distributionManagement>
     <site>
@@ -179,8 +179,8 @@
   </properties>
 
   <build>
-   <defaultGoal>clean verify apache-rat:check checkstyle:check japicmp:cmp spotbugs:check pmd:check javadoc:javadoc</defaultGoal>
-   <pluginManagement>
+    <defaultGoal>clean verify apache-rat:check checkstyle:check japicmp:cmp spotbugs:check pmd:check javadoc:javadoc</defaultGoal>
+    <pluginManagement>
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -212,39 +212,39 @@
     <plugins>
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-          <configuration>
-            <source>${maven.compiler.source}</source>
-            <quiet>true</quiet>
-            <notimestamp>true</notimestamp>
-            <validateLinks>true</validateLinks>
-            <archive>
-              <manifest>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-              </manifest>
-            </archive>
-            <doclint>all</doclint>
-            <!-- Java 8 on GH says: "[WARNING] javadoc: warning - Error fetching URL: https://commons.apache.org/proper/commons-text/apidocs/" -->
-            <!-- <failOnWarnings>true</failOnWarnings> -->
-            <additionalDependencies>
-              <additionalDependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-text</artifactId>
-                <version>${commons.text.version}</version>
-              </additionalDependency>
-            </additionalDependencies>
-          </configuration>
-          <executions>
-            <execution>
-              <id>create-javadoc-jar</id>
-              <goals>
-                <goal>javadoc</goal>
-                <goal>jar</goal>
-              </goals>
-              <phase>package</phase>
-            </execution>
-          </executions>
-        </plugin>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <quiet>true</quiet>
+          <notimestamp>true</notimestamp>
+          <validateLinks>true</validateLinks>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+          </archive>
+          <doclint>all</doclint>
+          <!-- Java 8 on GH says: "[WARNING] javadoc: warning - Error fetching URL: https://commons.apache.org/proper/commons-text/apidocs/" -->
+          <!-- <failOnWarnings>true</failOnWarnings> -->
+          <additionalDependencies>
+            <additionalDependency>
+              <groupId>org.apache.commons</groupId>
+              <artifactId>commons-text</artifactId>
+              <version>${commons.text.version}</version>
+            </additionalDependency>
+          </additionalDependencies>
+        </configuration>
+        <executions>
+          <execution>
+            <id>create-javadoc-jar</id>
+            <goals>
+              <goal>javadoc</goal>
+              <goal>jar</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -356,14 +356,14 @@
           </jvmArgs>
         </configuration>
       </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>8</source>
-                <target>8</target>
-            </configuration>
-        </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
@@ -531,10 +531,10 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
               <excludes>
-                <exclude>org/apache/commons/lang3/time/Java15BugFastDateParserTest.java</exclude>               
+                <exclude>org/apache/commons/lang3/time/Java15BugFastDateParserTest.java</exclude>
               </excludes>
             </configuration>
-          </plugin>        
+          </plugin>
         </plugins>
       </build>
     </profile>
