@@ -809,7 +809,7 @@ class StringUtilsTest extends AbstractLangTest {
 
     @Test
     void testGetLevenshteinDistance_NullStringInt() {
-        assertIllegalArgumentException(() -> StringUtils.getLevenshteinDistance(null, "a", 0));
+        assertIllegalArgumentException(() -> StringUtils.getLevenshteinDistanceWithThreshold(null, "a", 0));
     }
 
     @Test
@@ -819,7 +819,7 @@ class StringUtilsTest extends AbstractLangTest {
 
     @Test
     void testGetLevenshteinDistance_StringNullInt() {
-        assertIllegalArgumentException(() -> StringUtils.getLevenshteinDistance("a", null, 0));
+        assertIllegalArgumentException(() -> StringUtils.getLevenshteinDistanceWithThreshold("a", null, 0));
     }
 
     @Test
@@ -839,70 +839,70 @@ class StringUtilsTest extends AbstractLangTest {
     @Test
     void testGetLevenshteinDistance_StringStringInt() {
         // empty strings
-        assertEquals(0, StringUtils.getLevenshteinDistance("", "", 0));
-        assertEquals(7, StringUtils.getLevenshteinDistance("aaapppp", "", 8));
-        assertEquals(7, StringUtils.getLevenshteinDistance("aaapppp", "", 7));
-        assertEquals(-1, StringUtils.getLevenshteinDistance("aaapppp", "", 6));
+        assertEquals(0, StringUtils.getLevenshteinDistanceWithThreshold("", "", 0));
+        assertEquals(7, StringUtils.getLevenshteinDistanceWithThreshold("aaapppp", "", 8));
+        assertEquals(7, StringUtils.getLevenshteinDistanceWithThreshold("aaapppp", "", 7));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("aaapppp", "", 6));
 
         // unequal strings, zero threshold
-        assertEquals(-1, StringUtils.getLevenshteinDistance("b", "a", 0));
-        assertEquals(-1, StringUtils.getLevenshteinDistance("a", "b", 0));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("b", "a", 0));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("a", "b", 0));
 
         // equal strings
-        assertEquals(0, StringUtils.getLevenshteinDistance("aa", "aa", 0));
-        assertEquals(0, StringUtils.getLevenshteinDistance("aa", "aa", 2));
+        assertEquals(0, StringUtils.getLevenshteinDistanceWithThreshold("aa", "aa", 0));
+        assertEquals(0, StringUtils.getLevenshteinDistanceWithThreshold("aa", "aa", 2));
 
         // same length
-        assertEquals(-1, StringUtils.getLevenshteinDistance("aaa", "bbb", 2));
-        assertEquals(3, StringUtils.getLevenshteinDistance("aaa", "bbb", 3));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("aaa", "bbb", 2));
+        assertEquals(3, StringUtils.getLevenshteinDistanceWithThreshold("aaa", "bbb", 3));
 
         // big stripe
-        assertEquals(6, StringUtils.getLevenshteinDistance("aaaaaa", "b", 10));
+        assertEquals(6, StringUtils.getLevenshteinDistanceWithThreshold("aaaaaa", "b", 10));
 
         // distance less than threshold
-        assertEquals(7, StringUtils.getLevenshteinDistance("aaapppp", "b", 8));
-        assertEquals(3, StringUtils.getLevenshteinDistance("a", "bbb", 4));
+        assertEquals(7, StringUtils.getLevenshteinDistanceWithThreshold("aaapppp", "b", 8));
+        assertEquals(3, StringUtils.getLevenshteinDistanceWithThreshold("a", "bbb", 4));
 
         // distance equal to threshold
-        assertEquals(7, StringUtils.getLevenshteinDistance("aaapppp", "b", 7));
-        assertEquals(3, StringUtils.getLevenshteinDistance("a", "bbb", 3));
+        assertEquals(7, StringUtils.getLevenshteinDistanceWithThreshold("aaapppp", "b", 7));
+        assertEquals(3, StringUtils.getLevenshteinDistanceWithThreshold("a", "bbb", 3));
 
         // distance greater than threshold
-        assertEquals(-1, StringUtils.getLevenshteinDistance("a", "bbb", 2));
-        assertEquals(-1, StringUtils.getLevenshteinDistance("bbb", "a", 2));
-        assertEquals(-1, StringUtils.getLevenshteinDistance("aaapppp", "b", 6));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("a", "bbb", 2));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("bbb", "a", 2));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("aaapppp", "b", 6));
 
         // stripe runs off array, strings not similar
-        assertEquals(-1, StringUtils.getLevenshteinDistance("a", "bbb", 1));
-        assertEquals(-1, StringUtils.getLevenshteinDistance("bbb", "a", 1));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("a", "bbb", 1));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("bbb", "a", 1));
 
         // stripe runs off array, strings are similar
-        assertEquals(-1, StringUtils.getLevenshteinDistance("12345", "1234567", 1));
-        assertEquals(-1, StringUtils.getLevenshteinDistance("1234567", "12345", 1));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("12345", "1234567", 1));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("1234567", "12345", 1));
 
-        // old getLevenshteinDistance test cases
-        assertEquals(1, StringUtils.getLevenshteinDistance("frog", "fog", 1));
-        assertEquals(3, StringUtils.getLevenshteinDistance("fly", "ant", 3));
-        assertEquals(7, StringUtils.getLevenshteinDistance("elephant", "hippo", 7));
-        assertEquals(-1, StringUtils.getLevenshteinDistance("elephant", "hippo", 6));
-        assertEquals(7, StringUtils.getLevenshteinDistance("hippo", "elephant", 7));
-        assertEquals(-1, StringUtils.getLevenshteinDistance("hippo", "elephant", 6));
-        assertEquals(8, StringUtils.getLevenshteinDistance("hippo", "zzzzzzzz", 8));
-        assertEquals(8, StringUtils.getLevenshteinDistance("zzzzzzzz", "hippo", 8));
-        assertEquals(1, StringUtils.getLevenshteinDistance("hello", "hallo", 1));
+        // old getLevenshteinDistanceWithThreshold test cases
+        assertEquals(1, StringUtils.getLevenshteinDistanceWithThreshold("frog", "fog", 1));
+        assertEquals(3, StringUtils.getLevenshteinDistanceWithThreshold("fly", "ant", 3));
+        assertEquals(7, StringUtils.getLevenshteinDistanceWithThreshold("elephant", "hippo", 7));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("elephant", "hippo", 6));
+        assertEquals(7, StringUtils.getLevenshteinDistanceWithThreshold("hippo", "elephant", 7));
+        assertEquals(-1, StringUtils.getLevenshteinDistanceWithThreshold("hippo", "elephant", 6));
+        assertEquals(8, StringUtils.getLevenshteinDistanceWithThreshold("hippo", "zzzzzzzz", 8));
+        assertEquals(8, StringUtils.getLevenshteinDistanceWithThreshold("zzzzzzzz", "hippo", 8));
+        assertEquals(1, StringUtils.getLevenshteinDistanceWithThreshold("hello", "hallo", 1));
 
-        assertEquals(1, StringUtils.getLevenshteinDistance("frog", "fog", Integer.MAX_VALUE));
-        assertEquals(3, StringUtils.getLevenshteinDistance("fly", "ant", Integer.MAX_VALUE));
-        assertEquals(7, StringUtils.getLevenshteinDistance("elephant", "hippo", Integer.MAX_VALUE));
-        assertEquals(7, StringUtils.getLevenshteinDistance("hippo", "elephant", Integer.MAX_VALUE));
-        assertEquals(8, StringUtils.getLevenshteinDistance("hippo", "zzzzzzzz", Integer.MAX_VALUE));
-        assertEquals(8, StringUtils.getLevenshteinDistance("zzzzzzzz", "hippo", Integer.MAX_VALUE));
-        assertEquals(1, StringUtils.getLevenshteinDistance("hello", "hallo", Integer.MAX_VALUE));
+        assertEquals(1, StringUtils.getLevenshteinDistanceWithThreshold("frog", "fog", Integer.MAX_VALUE));
+        assertEquals(3, StringUtils.getLevenshteinDistanceWithThreshold("fly", "ant", Integer.MAX_VALUE));
+        assertEquals(7, StringUtils.getLevenshteinDistanceWithThreshold("elephant", "hippo", Integer.MAX_VALUE));
+        assertEquals(7, StringUtils.getLevenshteinDistanceWithThreshold("hippo", "elephant", Integer.MAX_VALUE));
+        assertEquals(8, StringUtils.getLevenshteinDistanceWithThreshold("hippo", "zzzzzzzz", Integer.MAX_VALUE));
+        assertEquals(8, StringUtils.getLevenshteinDistanceWithThreshold("zzzzzzzz", "hippo", Integer.MAX_VALUE));
+        assertEquals(1, StringUtils.getLevenshteinDistanceWithThreshold("hello", "hallo", Integer.MAX_VALUE));
     }
 
     @Test
-    void testGetLevenshteinDistance_StringStringNegativeInt() {
-        assertIllegalArgumentException(() -> StringUtils.getLevenshteinDistance("a", "a", -1));
+    void testgetLevenshteinDistanceWithThreshold_StringStringNegativeInt() {
+        assertIllegalArgumentException(() -> StringUtils.getLevenshteinDistanceWithThreshold("a", "a", -1));
     }
 
     /**

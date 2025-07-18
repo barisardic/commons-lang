@@ -14,7 +14,7 @@ limitations under the License. */
 package org.example.GeneratedTest;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.apache.commons.text.WordUtils;
+import org.apache.commons.lang3.text.WordUtils;
 import org.junit.jupiter.api.Test;
 public class WrapTest {
     @Test

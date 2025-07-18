@@ -328,7 +328,7 @@
         </dependencies>
         <configuration>
           <targetClasses>
-            <param>org.apache.commons.lang3.*</param>
+            <param>org.apache.commons.*</param>
           </targetClasses>
           <targetTests>
             <param>org.example.GeneratedTest.*Test</param>
