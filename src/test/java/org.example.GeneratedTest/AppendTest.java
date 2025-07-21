@@ -13,116 +13,108 @@ See the License for the specific language governing permissions and
 limitations under the License. */
 package org.example.GeneratedTest;
 
+import org.apache.commons.lang3.text.FormattableUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.FormattableFlags;
+import java.util.Formatter;
+import java.util.Locale;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppendTest {
 
-    private TestCompareToBuilder builder;
-
-    // Custom CompareToBuilder for testing
-    static class TestCompareToBuilder {
-        int comparison = 0;
-
-        public TestCompareToBuilder append(char lhs, char rhs) {
-            if (comparison != 0) return this;
-            if (lhs < rhs) comparison = -1;
-            else if (lhs > rhs) comparison = 1;
-            return this;
-        }
-
-        public TestCompareToBuilder append(char[] lhs, char[] rhs) {
-            if (comparison != 0) return this;
-            if (lhs == rhs) return this;
-            if (lhs == null) {
-                comparison = -1;
-                return this;
-            }
-            if (rhs == null) {
-                comparison = 1;
-                return this;
-            }
-            if (lhs.length != rhs.length) {
-                comparison = lhs.length < rhs.length ? -1 : 1;
-                return this;
-            }
-            for (int i = 0; i < lhs.length && comparison == 0; i++) {
-                append(lhs[i], rhs[i]);
-            }
-            return this;
-        }
-
-        public int toComparison() {
-            return comparison;
-        }
-    }
-
-    @BeforeEach
-    void setUp() {
-        builder = new TestCompareToBuilder();
+    private static String format(CharSequence seq, int flags, int width, int precision, char padChar, CharSequence ellipsis) {
+        StringBuilder sb = new StringBuilder();
+        Formatter formatter = new Formatter(sb, Locale.US);
+        FormattableUtils.append(seq, formatter, flags, width, precision, padChar, ellipsis);
+        return sb.toString();
     }
 
     @Test
-    void testSameReference() {
-        char[] arr = {'a', 'b'};
-        builder.append(arr, arr);
-        assertEquals(0, builder.toComparison());
+    public void testNoTruncationNoPadding() {
+        String result = format("Hello", 0, 5, -1, ' ', null);
+        assertEquals("Hello", result);
     }
 
     @Test
-    void testLeftNullRightNotNull() {
-        builder.append(null, new char[]{'a'});
-        assertEquals(-1, builder.toComparison());
+    public void testPaddingRightJustified() {
+        String result = format("Hi", 0, 5, -1, '_', null);
+        assertEquals("___Hi", result);
     }
 
     @Test
-    void testRightNullLeftNotNull() {
-        builder.append(new char[]{'a'}, null);
-        assertEquals(1, builder.toComparison());
+    public void testPaddingLeftJustified() {
+        String result = format("Hi", FormattableFlags.LEFT_JUSTIFY, 5, -1, '_', null);
+        assertEquals("Hi___", result);
     }
 
     @Test
-    void testBothNull() {
-        builder.append(null, null);
-        assertEquals(0, builder.toComparison());
+    public void testTruncationNoEllipsis() {
+        String result = format("HelloWorld", 0, 10, 5, ' ', null);
+        assertEquals("     Hello", result);
     }
 
     @Test
-    void testDifferentLengthsLeftShorter() {
-        builder.append(new char[]{'a'}, new char[]{'a', 'b'});
-        assertEquals(-1, builder.toComparison());
+    public void testTruncationWithEllipsis() {
+        String result = format("HelloWorld", 0, 10, 7, ' ', "...");  // Will truncate to 7 chars: 4 + "..."
+        assertEquals("   Hell...", result);
     }
 
     @Test
-    void testDifferentLengthsRightShorter() {
-        builder.append(new char[]{'a', 'b'}, new char[]{'a'});
-        assertEquals(1, builder.toComparison());
+    public void testEllipsisEqualToPrecision() {
+        String result = format("HelloWorld", 0, 10, 3, ' ', "..."); // Replaces all 3 with ellipsis
+        assertEquals("       ...", result);
     }
 
     @Test
-    void testEqualArrays() {
-        builder.append(new char[]{'a', 'b'}, new char[]{'a', 'b'});
-        assertEquals(0, builder.toComparison());
+    public void testEllipsisNullFallsBackToEmpty() {
+        String result = format("HelloWorld", 0, 10, 5, ' ', null); // Should truncate to "Hello"
+        assertEquals("     Hello", result);
     }
 
     @Test
-    void testDifferentElementsLeftLess() {
-        builder.append(new char[]{'a', 'b'}, new char[]{'a', 'c'});
-        assertEquals(-1, builder.toComparison());
+    public void testZeroWidth() {
+        String result = format("Hi", 0, 0, -1, ' ', null);
+        assertEquals("Hi", result);
     }
 
     @Test
-    void testDifferentElementsLeftGreater() {
-        builder.append(new char[]{'a', 'd'}, new char[]{'a', 'c'});
-        assertEquals(1, builder.toComparison());
+    public void testPrecisionGreaterThanLength() {
+        String result = format("Hi", 0, 4, 10, ' ', null);
+        assertEquals("  Hi", result);
     }
 
     @Test
-    void testEarlyExitIfComparisonAlreadyNonZero() {
-        builder.comparison = 1;
-        builder.append(new char[]{'a'}, new char[]{'b'});
-        assertEquals(1, builder.toComparison());
+    public void testEllipsisLongerThanPrecisionThrows() {
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
+            format("Hello", 0, 10, 2, ' ', "...");
+        });
+        assertTrue(ex.getMessage().contains("ellipsis"));
+    }
+
+    @Test
+    public void testEmptyStringInput() {
+        String result = format("", 0, 5, -1, '_', null);
+        assertEquals("_____", result);
+    }
+
+    @Test
+    public void testEllipsisEmptyString() {
+        String result = format("ABCDEFG", 0, 8, 4, ' ', ""); // Should truncate without ellipsis
+        assertEquals("    ABCD", result);
+    }
+
+    @Test
+    public void testWidePaddingUnicodeChar() {
+        String result = format("X", 0, 4, -1, '\u2022', null); // Padding with ?
+        assertEquals("\u2022\u2022\u2022X", result);
+    }
+
+    @Test
+    public void testLeftJustifyWithTruncationAndEllipsis() {
+        String result = format("abcdefghij", FormattableFlags.LEFT_JUSTIFY, 10, 6, '.', "--");
+        assertEquals("abcd--....", result);
     }
 }
