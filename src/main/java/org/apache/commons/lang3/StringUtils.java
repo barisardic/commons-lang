@@ -5459,7 +5459,7 @@ public class StringUtils {
     /**
      * Finds the n-th index within a String, handling {@code null}.
      * This method uses {@link String#indexOf(String)} if possible.
-     * <p>Note that matches may overlap<p>
+     * <p>Note that matches may overlap</p>
      *
      * <p>A {@code null} CharSequence will return {@code -1}.</p>
      *
@@ -6415,7 +6415,7 @@ public class StringUtils {
      * @param replacementList
      *            the Strings to replace them with, no-op if null
      * @param repeat if true, then replace repeatedly
-     *       until there are no more possible replacements or timeToLive < 0
+     *       until there are no more possible replacements or timeToLive &lt; 0
      * @param timeToLive
      *            if less than 0 then there is a circular reference and endless
      *            loop
