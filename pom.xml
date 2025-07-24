@@ -331,7 +331,7 @@
             <param>org.apache.commons.*</param>
           </targetClasses>
           <targetTests>
-            <param>org.example.GeneratedTest.*Test</param>
+            <param>cacoon.JumbledTest.*Test</param>
           </targetTests>
           <excludedTestClasses>
             <param>org.apache.commons.lang3.SystemPropertiesTest</param>
