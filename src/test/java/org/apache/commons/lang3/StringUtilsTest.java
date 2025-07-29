@@ -827,12 +827,15 @@ class StringUtilsTest extends AbstractLangTest {
         assertEquals(0, StringUtils.getLevenshteinDistance("", ""));
         assertEquals(1, StringUtils.getLevenshteinDistance("", "a"));
         assertEquals(7, StringUtils.getLevenshteinDistance("aaapppp", ""));
+
         assertEquals(1, StringUtils.getLevenshteinDistance("frog", "fog"));
         assertEquals(3, StringUtils.getLevenshteinDistance("fly", "ant"));
         assertEquals(7, StringUtils.getLevenshteinDistance("elephant", "hippo"));
+
         assertEquals(7, StringUtils.getLevenshteinDistance("hippo", "elephant"));
         assertEquals(8, StringUtils.getLevenshteinDistance("hippo", "zzzzzzzz"));
         assertEquals(8, StringUtils.getLevenshteinDistance("zzzzzzzz", "hippo"));
+
         assertEquals(1, StringUtils.getLevenshteinDistance("hello", "hallo"));
     }
 
@@ -1706,9 +1709,11 @@ class StringUtilsTest extends AbstractLangTest {
         assertNull(StringUtils.repeat(null, 2));
         assertEquals("", StringUtils.repeat("ab", 0));
         assertEquals("", StringUtils.repeat("", 3));
+
         assertEquals("aaa", StringUtils.repeat("a", 3));
         assertEquals("", StringUtils.repeat("a", -2));
         assertEquals("ababab", StringUtils.repeat("ab", 3));
+
         assertEquals("abcabcabc", StringUtils.repeat("abc", 3));
         final String str = StringUtils.repeat("a", 10000);  // bigger than pad limit
         assertEquals(10000, str.length());

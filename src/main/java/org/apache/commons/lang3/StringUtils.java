@@ -2751,31 +2751,31 @@ public class StringUtils {
      * @return the first index of any of the searchStrs in str, -1 if no match
      * @since 3.0 Changed signature from indexOfAny(String, String[]) to indexOfAny(CharSequence, CharSequence...)
      */
-    public static int indexOfAny(final CharSequence str, final CharSequence... searchStrs) {
-        if (str == null || searchStrs == null) {
-            return INDEX_NOT_FOUND;
-        }
-
-        // String's can't have a MAX_VALUEth index.
-        int ret = Integer.MAX_VALUE;
-
-        int tmp;
-        for (final CharSequence search : searchStrs) {
-            if (search == null) {
-                continue;
-            }
-            tmp = CharSequenceUtils.indexOf(str, search, 0);
-            if (tmp == INDEX_NOT_FOUND) {
-                continue;
-            }
-
-            if (tmp < ret) {
-                ret = tmp;
-            }
-        }
-
-        return ret == Integer.MAX_VALUE ? INDEX_NOT_FOUND : ret;
-    }
+//    public static int indexOfAny(final CharSequence str, final CharSequence... searchStrs) {
+//        if (str == null || searchStrs == null) {
+//            return INDEX_NOT_FOUND;
+//        }
+//
+//        // String's can't have a MAX_VALUEth index.
+//        int ret = Integer.MAX_VALUE;
+//
+//        int tmp;
+//        for (final CharSequence search : searchStrs) {
+//            if (search == null) {
+//                continue;
+//            }
+//            tmp = CharSequenceUtils.indexOf(str, search, 0);
+//            if (tmp == INDEX_NOT_FOUND) {
+//                continue;
+//            }
+//
+//            if (tmp < ret) {
+//                ret = tmp;
+//            }
+//        }
+//
+//        return ret == Integer.MAX_VALUE ? INDEX_NOT_FOUND : ret;
+//    }
 
     /**
      * Search a CharSequence to find the first index of any
@@ -5094,7 +5094,7 @@ public class StringUtils {
      * StringUtils.leftPad("bat", 3, 'z')  = "bat"
      * StringUtils.leftPad("bat", 5, 'z')  = "zzbat"
      * StringUtils.leftPad("bat", 1, 'z')  = "bat"
-     * StringUtils.leftPad("bat", -1, 'z') = "bat"
+     * StringUtils.("bat", -1, 'z') = "bat"
      * </pre>
      *
      * @param str  the String to pad out, may be null

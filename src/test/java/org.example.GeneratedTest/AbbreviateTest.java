@@ -19,84 +19,85 @@ import static org.apache.commons.lang3.StringUtils.abbreviate;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AbbreviateTest {
-
+//2,9
     @Test
     void testNullInput() {
         assertNull(abbreviate(null, "...", 0, 5), "Null input should return null");
     }
-
+//4
     @Test
     void testEmptyString() {
         assertEquals("", abbreviate("", "...", 0, 5), "Empty string should return empty string");
     }
-
+//+
     @Test
     void testEmptyAbbrevMarker() {
         assertEquals("Hello", abbreviate("Hello World", "", 0, 5), "Empty abbrevMarker should truncate to maxWidth");
     }
-
+//5
     @Test
     void testMaxWidthTooSmallThrows() {
         Exception ex = assertThrows(IllegalArgumentException.class, () -> abbreviate("Hello World", "...", 0, 2));
         assertTrue(ex.getMessage().contains("Minimum abbreviation width"));
     }
-
+//20, 21
     @Test
     void testMaxWidthTooSmallWithOffsetThrows() {
         Exception ex = assertThrows(IllegalArgumentException.class, () -> abbreviate("Hello World", "...", 5, 5));
         assertTrue(ex.getMessage().contains("Minimum abbreviation width with offset"));
     }
-
+//8
     @Test
     void testStringShorterThanMaxWidth() {
         assertEquals("Hi", abbreviate("Hi", "...", 0, 10), "Should return original string when shorter than maxWidth");
     }
-
+//11
     @Test
     void testNoOffsetBasicAbbreviation() {
         assertEquals("Hel...", abbreviate("Hello World", "...", 0, 6), "Should abbreviate at start with no offset");
     }
-
+//12
     @Test
     void testOffsetLessThanThreshold() {
         assertEquals("Hel...", abbreviate("Hello World", "...", 2, 6), "Offset <= marker + 1 should behave like no offset");
     }
-
+//+
 //    @Test
 //    void testOffsetGreaterThanThreshold() {
 //        assertEquals("...o W...", abbreviate("Hello World Example", "...", 5, 9), "Should abbreviate with offset and marker");
 //    }
-//
+//+
 //    @Test
 //    void testOffsetBeyondStringLength() {
 //        assertEquals("...ample", abbreviate("Hello World Example", "...", 100, 9), "Offset > length should clamp");
 //    }
-
+//13-16
     @Test
     void testOffsetAdjustsWhenRemainingTooShort() {
         assertEquals("...World", abbreviate("Hello World", "...", 6, 8), "Offset adjusts to fit abbreviation properly");
     }
-
+//11
     @Test
     void testCustomAbbrevMarker() {
         assertEquals("Hel--", abbreviate("Hello World", "--", 0, 5), "Should use custom abbreviation marker");
     }
-
+//8
 //    @Test
 //    void testSubstringAtStartWithCustomMarker() {
 //        assertEquals("Hel--", abbreviate("Hello", "--", 0, 5), "Should abbreviate with custom marker correctly");
 //    }
 
+//23,24,25,26,27
     @Test
     void testOffsetEqualsStringLength() {
         assertEquals("...World", abbreviate("Hello World", "...", 20, 8), "Offset equal to length clamps to length");
     }
-
+//11
     @Test
     void testMaxWidthEqualToMarkerPlusOne() {
         assertEquals("H-", abbreviate("Hello", "-", 0, 2), "Width equal to marker+1 should abbreviate correctly");
     }
-
+//+ similar to 11
     @Test
     void testEmptyAbbrevMarkerWithIsNotEmptyCondition() {
         assertEquals("Tes", abbreviate("Test", "", 0, 3), "Should truncate to maxWidth when marker is empty and input is not empty");
