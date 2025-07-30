@@ -96,4 +96,5 @@ void testIdenticalStrings() {
 
 }
 
-//3,4,5,8 not used from apache
+//There are 10 test in apache 6 of them used in generated test
+// 3,4,5,8 from apache not used.

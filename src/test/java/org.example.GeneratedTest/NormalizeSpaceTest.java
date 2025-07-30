@@ -113,5 +113,5 @@ public class NormalizeSpaceTest {
 
 }
 
-
-//Assert 6-12 , 17-20 from apache are missing
+//There are 21 test in apache 10 of them used in generated tests
+//Test 6-12 , 17-20 from apache are missing

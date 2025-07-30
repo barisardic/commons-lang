@@ -109,4 +109,5 @@ public class LeftPadTest {
 
 }
 
-//2,3,8 from apache are missing
+//There are 10 test cases in Apache and 7 of them tested in generated ones as well
+//Tests 2,3,8 from apache are missing
