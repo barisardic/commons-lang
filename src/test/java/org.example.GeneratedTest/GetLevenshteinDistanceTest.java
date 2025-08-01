@@ -19,67 +19,74 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class GetLevenshteinDistanceTest { @Test
+public class GetLevenshteinDistanceTest {
+
+//+
+    @Test
 void testIdenticalStrings() {
     assertEquals(0, StringUtils.getLevenshteinDistance("test", "test"));
 }
 
+//10
     @Test
     void testCompletelyDifferentStrings() {
         assertEquals(4, StringUtils.getLevenshteinDistance("test", "abcd"));
     }
 
+//Partially 2
     @Test
     void testOneEmptyString() {
         assertEquals(4, StringUtils.getLevenshteinDistance("test", ""));
         assertEquals(4, StringUtils.getLevenshteinDistance("", "test"));
     }
-
+//1
     @Test
     void testBothEmptyStrings() {
         assertEquals(0, StringUtils.getLevenshteinDistance("", ""));
     }
 
+//+
     @Test
     void testNullFirstStringThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             StringUtils.getLevenshteinDistance(null, "test");
         });
     }
-
+//+
     @Test
     void testNullSecondStringThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             StringUtils.getLevenshteinDistance("test", null);
         });
     }
-
+//7
     @Test
     void testInsertion() {
         assertEquals(1, StringUtils.getLevenshteinDistance("test", "tests"));
     }
-
+//6
     @Test
     void testDeletion() {
         assertEquals(1, StringUtils.getLevenshteinDistance("tests", "test"));
     }
-
+//10
     @Test
     void testSubstitution() {
         assertEquals(1,StringUtils.getLevenshteinDistance("test", "tent"));
     }
-
+//9
     @Test
     void testSwappedStrings() {
         // s is longer than t, so it should swap internally
         assertEquals(1, StringUtils.getLevenshteinDistance("testing", "testin"));
     }
-
+//10
 //    @Test
 //    void testUnicodeStrings() {
 //        assertEquals(1, StringUtils.getLevenshteinDistance("türk", "turk"));
 //    }
 
+    //9
     @Test
     void testLongerStrings() {
         String s1 = "kitten";
@@ -88,3 +95,6 @@ void testIdenticalStrings() {
     }
 
 }
+
+//There are 10 test in apache 6 of them used in generated test
+// 3,4,5,8 from apache not used.
