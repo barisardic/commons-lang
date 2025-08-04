@@ -73,7 +73,7 @@ public class WrapTest {
 //        String expected = "one,two,\nthree,four";
 //        assertEquals(expected, WordUtils.wrap(input, 9, "\n", true, ","));  // break on comma
 //    }
-//
+
 //    @Test
 //    void testBlankWrapOnDefaultsToSpace() {
 //        String input = "Hello world example";
@@ -88,24 +88,24 @@ public class WrapTest {
         assertEquals(expected, WordUtils.wrap(input, 3, "\n", true, " "));
     }
 
-//    @Test
-//    void testTrailingSpacesPreserved() {
-//        String input = "  Leading and  trailing  ";
-//        String expected = "  Leading\nand\ntrailing";
-//        assertEquals(expected, WordUtils.wrap(input.trim(), 10, "\n", true, " "));
-//    }
+/*    @Test
+    void testTrailingSpacesPreserved() {
+        String input = "  Leading and  trailing  ";
+        String expected = "  Leading\nand\ntrailing";
+        assertEquals(expected, WordUtils.wrap(input.trim(), 10, "\n", true, " "));
+    }
 
-//    @Test
-//    void testMultipleConsecutiveBreakChars() {
-//        String input = "a  b    c";
-//        String expected = "a\nb\nc";
-//        assertEquals(expected, WordUtils.wrap(input, 2, "\n", true, " "));
-//    }
+    @Test
+    void testMultipleConsecutiveBreakChars() {
+        String input = "a  b    c";
+        String expected = "a\nb\nc";
+        assertEquals(expected, WordUtils.wrap(input, 2, "\n", true, " "));
+    }
 
-//    @Test
-//    void testVeryLongWordAtStart() {
-//        String input = "AVeryLongWordWithoutSpaces that comes after";
-//        String expected = "AVeryLongW\nordWithou\ntSpaces\nthat comes\nafter";
-//        assertEquals(expected, WordUtils.wrap(input, 10, "\n", true, " "));
-//    }
+    @Test
+    void testVeryLongWordAtStart() {
+        String input = "AVeryLongWordWithoutSpaces that comes after";
+        String expected = "AVeryLongW\nordWithou\ntSpaces\nthat comes\nafter";
+        assertEquals(expected, WordUtils.wrap(input, 10, "\n", true, " "));
+    }*/
 }
