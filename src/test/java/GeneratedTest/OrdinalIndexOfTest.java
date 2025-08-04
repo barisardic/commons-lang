@@ -11,12 +11,12 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. */
-package org.example.GeneratedTest;
+package GeneratedTest;
 
 import org.junit.jupiter.api.Test;
 
 import static org.apache.commons.lang3.StringUtils.ordinalIndexOf;
-import static org.example.GeneratedTest.IndexOfAnyTest.INDEX_NOT_FOUND;
+import static GeneratedTest.IndexOfAnyTest.INDEX_NOT_FOUND;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
