@@ -9,27 +9,37 @@ public class LeftPadTest2 {
     void testNullString() {
         assertNull(StringUtils.leftPad(null, 5, "*"));
     }
-//3
+//+
     @Test
     void testEmptyString() {
         assertEquals("*****", StringUtils.leftPad("", 5, "*"));
     }
-//7,8
+
     @Test
     void testNoPaddingNeeded() {
+
+// + Testing if size equal to str length
         assertEquals("abc", StringUtils.leftPad("abc", 3, "*"));
+
+//7
         assertEquals("abc", StringUtils.leftPad("abc", 2, "*"));
     }
-//+Explicit single-char padding (Apache only tested multi-char and space defaults)
+
     @Test
     void testPaddingWithSingleChar() {
+
+//4
         assertEquals("***abc", StringUtils.leftPad("abc", 6, "*"));
+
+//10
         assertEquals("   abc", StringUtils.leftPad("abc", 6, " "));
     }
-//4,5
+
     @Test
     void testPaddingWithMultiCharPad() {
+        //6
         assertEquals("xyxabc", StringUtils.leftPad("abc", 6, "xy"));
+        //6
         assertEquals("12312abc", StringUtils.leftPad("abc", 8, "123"));
     }
 //6
@@ -42,26 +52,31 @@ public class LeftPadTest2 {
     void testPadStrExactlyFits() {
         assertEquals("xyzabc", StringUtils.leftPad("abc", 6, "xyz"));
     }
-//9,10
+
     @Test
     void testPadStrEmptyOrNull() {
+        //10
         assertEquals("   abc", StringUtils.leftPad("abc", 6, ""));
+        //9
         assertEquals("   abc", StringUtils.leftPad("abc", 6, null));
     }
-//+	PadStr length equals padding needed (edge case)
+//5
     @Test
     void testPadStrSameSize() {
         assertEquals("xyzabc", StringUtils.leftPad("abc", 6, "xyz"));
     }
-//+ Size < original length with multi-char input
+//7
     @Test
     void testPadSizeSmallerThanOriginal() {
         assertEquals("abcdef", StringUtils.leftPad("abcdef", 3, "*"));
     }
-//+ Non-alphanumeric pad characters (@, ?)
+
+
     @Test
     void testPadWithSpecialCharacters() {
+        //+ Testing Special Characters
         assertEquals("@@abc", StringUtils.leftPad("abc", 5, "@"));
+        //Duplicate
         assertEquals("??abc", StringUtils.leftPad("abc", 6, "?"));
     }
 //+ Large padding size (1,000 chars)
@@ -73,6 +88,7 @@ public class LeftPadTest2 {
     }
 }
 //Number of test: 12
-//Number of test match:7
-//New test scenarios:5
+//Number of test match:8
+//New test scenarios:3
 //Number of apache test:10
+//duplicate:4

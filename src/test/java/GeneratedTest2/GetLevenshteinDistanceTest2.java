@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetLevenshteinDistanceTest2 {
-    //+ Non-empty identical strings ? 0 distance (Apache only tested empty strings)
+    //+ Non-empty identical strings 0 distance
     @Test
     public void testIdenticalStrings() {
         assertEquals(0, StringUtils.getLevenshteinDistance("kitten", "kitten"));
@@ -16,13 +16,13 @@ public class GetLevenshteinDistanceTest2 {
         assertEquals(6, StringUtils.getLevenshteinDistance("kitten", "orange"));
     }
 
-    //+ Insertion at end of string (Apache tested middle deletions/start insertions)
+    //+
     @Test
     public void testSingleCharacterChange() {
         assertEquals(1, StringUtils.getLevenshteinDistance("kitten", "kittena".substring(0, 6) + "a"));
     }
 
-    //+ Insertion in middle of string (Apache tested deletions, not insertions)
+    //4
     @Test
     public void testInsertion() {
         assertEquals(1, StringUtils.getLevenshteinDistance("abc", "abxc"));
@@ -34,7 +34,7 @@ public class GetLevenshteinDistanceTest2 {
         assertEquals(1, StringUtils.getLevenshteinDistance("abcd", "acd"));
     }
 
-    //10
+    //4
     @Test
     public void testSubstitution() {
         assertEquals(1, StringUtils.getLevenshteinDistance("abc", "axc"));
@@ -58,19 +58,19 @@ public class GetLevenshteinDistanceTest2 {
         assertEquals(0, StringUtils.getLevenshteinDistance("", ""));
     }
 
-    //+ Null first argument ? IllegalArgumentException (Apache didn't test nulls)
+    //+ Null first argument
     @Test
     public void testNullFirstStringThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> StringUtils.getLevenshteinDistance(null, "abc"));
     }
 
-    //+ Null second argument ? IllegalArgumentException (Apache didn't test nulls)
+    //+ Null second argument
     @Test
     public void testNullSecondStringThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> StringUtils.getLevenshteinDistance("abc", null));
     }
 
-    //+ Explicit symmetry verification (distance(a,b) == distance(b,a))
+    //6,7
     @Test
     public void testSymmetry() {
         String a = "gumbo";
@@ -81,7 +81,7 @@ public class GetLevenshteinDistanceTest2 {
         );
     }
 /*
-//+ Large input (1,000 chars) with 1-char difference ? distance=1
+//+ Bad Testing
     @Test
     public void testLargeStrings() {
         String a = "a".repeat(1000);
@@ -91,6 +91,6 @@ public class GetLevenshteinDistanceTest2 {
 */
 }
 //Number of test: 13
-//Number of test match:6
-//New test scenarios:7
-//Number of apache test:10
+//Number of test match:7
+//New test scenarios:5
+//Number duplicate:2
