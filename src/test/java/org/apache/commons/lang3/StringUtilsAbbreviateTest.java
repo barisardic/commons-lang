@@ -126,44 +126,53 @@ class StringUtilsAbbreviateTest {
 
     @Test
     void testAbbreviate_StringStringIntInt() {
-        assertNull(StringUtils.abbreviate(null, null, 10, 12));
-        assertNull(StringUtils.abbreviate(null, "...", 10, 12));
-        assertEquals("", StringUtils.abbreviate("", null, 0, 10));
-        assertEquals("", StringUtils.abbreviate("", "...", 2, 10));
-        assertIllegalArgumentException(() -> StringUtils.abbreviate("abcdefghij", "::", 0, 2),
+        assertNull(StringUtils.abbreviate(null, null, 10, 12)); //1
+        assertNull(StringUtils.abbreviate(null, "...", 10, 12)); //2
+        assertEquals("", StringUtils.abbreviate("", null, 0, 10)); //3
+
+        assertEquals("", StringUtils.abbreviate("", "...", 2, 10)); //4
+        assertIllegalArgumentException(() -> StringUtils.abbreviate("abcdefghij", "::", 0, 2), //5
                 "StringUtils.abbreviate expecting IllegalArgumentException");
-        assertIllegalArgumentException(() -> StringUtils.abbreviate("abcdefghij", "!!!", 5, 6),
+        assertIllegalArgumentException(() -> StringUtils.abbreviate("abcdefghij", "!!!", 5, 6),//6
                 "StringUtils.abbreviate expecting IllegalArgumentException");
+
         final String raspberry = "raspberry peach";
-        assertEquals("raspberry peach", StringUtils.abbreviate(raspberry, "--", 12, 15));
-        assertNull(StringUtils.abbreviate(null, ";", 7, 14));
-        assertAbbreviateWithAbbrevMarkerAndOffset("abcdefgh;;", ";;", -1, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("abcdefghi.", ".", 0, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("abcdefgh++", "++", 1, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("abcdefghi*", "*", 2, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("abcdef{{{{", "{{{{", 4, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("abcdef____", "____", 5, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("==fghijk==", "==", 5, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("___ghij___", "___", 6, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("/ghijklmno", "/", 7, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("/ghijklmno", "/", 8, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("/ghijklmno", "/", 9, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("///ijklmno", "///", 10, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("//hijklmno", "//", 10, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("//hijklmno", "//", 11, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("...ijklmno", "...", 12, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("/ghijklmno", "/", 13, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("/ghijklmno", "/", 14, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("999ijklmno", "999", 15, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("_ghijklmno", "_", 16, 10);
-        assertAbbreviateWithAbbrevMarkerAndOffset("+ghijklmno", "+", Integer.MAX_VALUE, 10);
+        assertEquals("raspberry peach", StringUtils.abbreviate(raspberry, "--", 12, 15));//7
+        assertNull(StringUtils.abbreviate(null, ";", 7, 14));//8
+        assertAbbreviateWithAbbrevMarkerAndOffset("abcdefgh;;", ";;", -1, 10);//9
+
+        assertAbbreviateWithAbbrevMarkerAndOffset("abcdefghi.", ".", 0, 10);//10
+        assertAbbreviateWithAbbrevMarkerAndOffset("abcdefgh++", "++", 1, 10);//11
+        assertAbbreviateWithAbbrevMarkerAndOffset("abcdefghi*", "*", 2, 10);//12
+
+        assertAbbreviateWithAbbrevMarkerAndOffset("abcdef{{{{", "{{{{", 4, 10);//13
+        assertAbbreviateWithAbbrevMarkerAndOffset("abcdef____", "____", 5, 10);//14
+        assertAbbreviateWithAbbrevMarkerAndOffset("==fghijk==", "==", 5, 10);//15
+
+        assertAbbreviateWithAbbrevMarkerAndOffset("___ghij___", "___", 6, 10);//16
+        assertAbbreviateWithAbbrevMarkerAndOffset("/ghijklmno", "/", 7, 10);//17
+        assertAbbreviateWithAbbrevMarkerAndOffset("/ghijklmno", "/", 8, 10);//18
+
+        assertAbbreviateWithAbbrevMarkerAndOffset("/ghijklmno", "/", 9, 10);//19
+        assertAbbreviateWithAbbrevMarkerAndOffset("///ijklmno", "///", 10, 10);//20
+        assertAbbreviateWithAbbrevMarkerAndOffset("//hijklmno", "//", 10, 10);//21
+
+        assertAbbreviateWithAbbrevMarkerAndOffset("//hijklmno", "//", 11, 10);//22
+        assertAbbreviateWithAbbrevMarkerAndOffset("...ijklmno", "...", 12, 10);//23
+        assertAbbreviateWithAbbrevMarkerAndOffset("/ghijklmno", "/", 13, 10);//24
+
+        assertAbbreviateWithAbbrevMarkerAndOffset("/ghijklmno", "/", 14, 10);//25
+        assertAbbreviateWithAbbrevMarkerAndOffset("999ijklmno", "999", 15, 10);//26
+        assertAbbreviateWithAbbrevMarkerAndOffset("_ghijklmno", "_", 16, 10);//27
+
+        assertAbbreviateWithAbbrevMarkerAndOffset("+ghijklmno", "+", Integer.MAX_VALUE, 10);//28
     }
 
     // Fixed LANG-1463
     @Test
     void testAbbreviateMarkerWithEmptyString() {
         final String greaterThanMaxTest = "much too long text";
-        assertEquals("much too long", StringUtils.abbreviate(greaterThanMaxTest, "", 13));
+        assertEquals("much too long", StringUtils.abbreviate(greaterThanMaxTest, "", 13));//29
     }
 
     @Test

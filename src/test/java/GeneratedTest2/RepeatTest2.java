@@ -88,6 +88,7 @@ public class RepeatTest2 {
         }
     }
 //Number of test: 14
-//Number of test match: 7
-//New test scenarios:7
+//Number of test match: 9
+//Number of duplicate: 1
+//New test scenarios:5
 //Number of apache test:9

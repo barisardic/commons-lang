@@ -344,22 +344,22 @@ class StringUtilsTest extends AbstractLangTest {
     void testChomp() {
 
         final String[][] chompCases = {
-                {FOO_UNCAP + "\r\n", FOO_UNCAP},
-                {FOO_UNCAP + "\n", FOO_UNCAP},
-                {FOO_UNCAP + "\r", FOO_UNCAP},
-                {FOO_UNCAP + " \r", FOO_UNCAP + " "},
-                {FOO_UNCAP, FOO_UNCAP},
-                {FOO_UNCAP + "\n\n", FOO_UNCAP + "\n"},
-                {FOO_UNCAP + "\r\n\r\n", FOO_UNCAP + "\r\n"},
-                {"foo\nfoo", "foo\nfoo"},
-                {"foo\n\rfoo", "foo\n\rfoo"},
-                {"\n", ""},
-                {"\r", ""},
-                {"a", "a"},
-                {"\r\n", ""},
-                {"", ""},
-                {null, null},
-                {FOO_UNCAP + "\n\r", FOO_UNCAP + "\n"}
+                {FOO_UNCAP + "\r\n", FOO_UNCAP},//1
+                {FOO_UNCAP + "\n", FOO_UNCAP},//2
+                {FOO_UNCAP + "\r", FOO_UNCAP},//3
+                {FOO_UNCAP + " \r", FOO_UNCAP + " "},//4
+                {FOO_UNCAP, FOO_UNCAP},//5
+                {FOO_UNCAP + "\n\n", FOO_UNCAP + "\n"},//6
+                {FOO_UNCAP + "\r\n\r\n", FOO_UNCAP + "\r\n"},//7
+                {"foo\nfoo", "foo\nfoo"},//8
+                {"foo\n\rfoo", "foo\n\rfoo"},//9
+                {"\n", ""},//10
+                {"\r", ""},//11
+                {"a", "a"},//12
+                {"\r\n", ""},//13
+                {"", ""},//14
+                {null, null},//15
+                {FOO_UNCAP + "\n\r", FOO_UNCAP + "\n"}//16
         };
         for (final String[] chompCase : chompCases) {
             final String original = chompCase[0];
@@ -367,20 +367,20 @@ class StringUtilsTest extends AbstractLangTest {
             assertEquals(expectedResult, StringUtils.chomp(original), "chomp(String) failed");
         }
 
-        assertEquals("foo", StringUtils.chomp("foobar", "bar"), "chomp(String, String) failed");
-        assertEquals("foobar", StringUtils.chomp("foobar", "baz"), "chomp(String, String) failed");
-        assertEquals("foo", StringUtils.chomp("foo", "foooo"), "chomp(String, String) failed");
-        assertEquals("foobar", StringUtils.chomp("foobar", ""), "chomp(String, String) failed");
-        assertEquals("foobar", StringUtils.chomp("foobar", null), "chomp(String, String) failed");
-        assertEquals("", StringUtils.chomp("", "foo"), "chomp(String, String) failed");
-        assertEquals("", StringUtils.chomp("", null), "chomp(String, String) failed");
-        assertEquals("", StringUtils.chomp("", ""), "chomp(String, String) failed");
-        assertNull(StringUtils.chomp(null, "foo"), "chomp(String, String) failed");
-        assertNull(StringUtils.chomp(null, null), "chomp(String, String) failed");
-        assertNull(StringUtils.chomp(null, ""), "chomp(String, String) failed");
-        assertEquals("", StringUtils.chomp("foo", "foo"), "chomp(String, String) failed");
-        assertEquals(" ", StringUtils.chomp(" foo", "foo"), "chomp(String, String) failed");
-        assertEquals("foo ", StringUtils.chomp("foo ", "foo"), "chomp(String, String) failed");
+        assertEquals("foo", StringUtils.chomp("foobar", "bar"), "chomp(String, String) failed");//17
+        assertEquals("foobar", StringUtils.chomp("foobar", "baz"), "chomp(String, String) failed");//18
+        assertEquals("foo", StringUtils.chomp("foo", "foooo"), "chomp(String, String) failed");//19
+        assertEquals("foobar", StringUtils.chomp("foobar", ""), "chomp(String, String) failed");//20
+        assertEquals("foobar", StringUtils.chomp("foobar", null), "chomp(String, String) failed");//21
+        assertEquals("", StringUtils.chomp("", "foo"), "chomp(String, String) failed");//22
+        assertEquals("", StringUtils.chomp("", null), "chomp(String, String) failed");//23
+        assertEquals("", StringUtils.chomp("", ""), "chomp(String, String) failed");//24
+        assertNull(StringUtils.chomp(null, "foo"), "chomp(String, String) failed");//25
+        assertNull(StringUtils.chomp(null, null), "chomp(String, String) failed");//26
+        assertNull(StringUtils.chomp(null, ""), "chomp(String, String) failed");//27
+        assertEquals("", StringUtils.chomp("foo", "foo"), "chomp(String, String) failed");//28
+        assertEquals(" ", StringUtils.chomp(" foo", "foo"), "chomp(String, String) failed");//29
+        assertEquals("foo ", StringUtils.chomp("foo ", "foo"), "chomp(String, String) failed");//30
     }
 
     @Test
@@ -824,19 +824,19 @@ class StringUtilsTest extends AbstractLangTest {
 
     @Test
     void testGetLevenshteinDistance_StringString() {
-        assertEquals(0, StringUtils.getLevenshteinDistance("", ""));
-        assertEquals(1, StringUtils.getLevenshteinDistance("", "a"));
-        assertEquals(7, StringUtils.getLevenshteinDistance("aaapppp", ""));
+        assertEquals(0, StringUtils.getLevenshteinDistance("", "")); //1
+        assertEquals(1, StringUtils.getLevenshteinDistance("", "a"));//2
+        assertEquals(7, StringUtils.getLevenshteinDistance("aaapppp", ""));//3
 
-        assertEquals(1, StringUtils.getLevenshteinDistance("frog", "fog"));
-        assertEquals(3, StringUtils.getLevenshteinDistance("fly", "ant"));
-        assertEquals(7, StringUtils.getLevenshteinDistance("elephant", "hippo"));
+        assertEquals(1, StringUtils.getLevenshteinDistance("frog", "fog"));//4
+        assertEquals(3, StringUtils.getLevenshteinDistance("fly", "ant"));//5
+        assertEquals(7, StringUtils.getLevenshteinDistance("elephant", "hippo"));//6
 
-        assertEquals(7, StringUtils.getLevenshteinDistance("hippo", "elephant"));
-        assertEquals(8, StringUtils.getLevenshteinDistance("hippo", "zzzzzzzz"));
-        assertEquals(8, StringUtils.getLevenshteinDistance("zzzzzzzz", "hippo"));
+        assertEquals(7, StringUtils.getLevenshteinDistance("hippo", "elephant"));//7
+        assertEquals(8, StringUtils.getLevenshteinDistance("hippo", "zzzzzzzz"));//8
+        assertEquals(8, StringUtils.getLevenshteinDistance("zzzzzzzz", "hippo"));//9
 
-        assertEquals(1, StringUtils.getLevenshteinDistance("hello", "hallo"));
+        assertEquals(1, StringUtils.getLevenshteinDistance("hello", "hallo"));//10
     }
 
     @Test
@@ -1277,16 +1277,16 @@ class StringUtilsTest extends AbstractLangTest {
 
     @Test
     void testLeftPad_StringIntString() {
-        assertNull(StringUtils.leftPad(null, 5, "-+"));
-        assertNull(StringUtils.leftPad(null, 5, null));
-        assertEquals("     ", StringUtils.leftPad("", 5, " "));
-        assertEquals("-+-+abc", StringUtils.leftPad("abc", 7, "-+"));
-        assertEquals("-+~abc", StringUtils.leftPad("abc", 6, "-+~"));
-        assertEquals("-+abc", StringUtils.leftPad("abc", 5, "-+~"));
-        assertEquals("abc", StringUtils.leftPad("abc", 2, " "));
-        assertEquals("abc", StringUtils.leftPad("abc", -1, " "));
-        assertEquals("  abc", StringUtils.leftPad("abc", 5, null));
-        assertEquals("  abc", StringUtils.leftPad("abc", 5, ""));
+        assertNull(StringUtils.leftPad(null, 5, "-+"));//1
+        assertNull(StringUtils.leftPad(null, 5, null));//2
+        assertEquals("     ", StringUtils.leftPad("", 5, " "));//3
+        assertEquals("-+-+abc", StringUtils.leftPad("abc", 7, "-+"));//4
+        assertEquals("-+~abc", StringUtils.leftPad("abc", 6, "-+~"));//5
+        assertEquals("-+abc", StringUtils.leftPad("abc", 5, "-+~"));//6
+        assertEquals("abc", StringUtils.leftPad("abc", 2, " "));//7
+        assertEquals("abc", StringUtils.leftPad("abc", -1, " "));//8
+        assertEquals("  abc", StringUtils.leftPad("abc", 5, null));//9
+        assertEquals("  abc", StringUtils.leftPad("abc", 5, ""));//10
     }
 
     @Test
@@ -1339,28 +1339,28 @@ class StringUtilsTest extends AbstractLangTest {
     @Test
     void testNormalizeSpace() {
         // Java says a non-breaking whitespace is not a whitespace.
-        assertFalse(Character.isWhitespace('\u00A0'));
+        assertFalse(Character.isWhitespace('\u00A0')); //1
         //
-        assertNull(StringUtils.normalizeSpace(null));
-        assertEquals("", StringUtils.normalizeSpace(""));
-        assertEquals("", StringUtils.normalizeSpace(" "));
-        assertEquals("", StringUtils.normalizeSpace("\t"));
-        assertEquals("", StringUtils.normalizeSpace("\n"));
-        assertEquals("", StringUtils.normalizeSpace("\u0009"));
-        assertEquals("", StringUtils.normalizeSpace("\u000B"));
-        assertEquals("", StringUtils.normalizeSpace("\u000C"));
-        assertEquals("", StringUtils.normalizeSpace("\u001C"));
-        assertEquals("", StringUtils.normalizeSpace("\u001D"));
-        assertEquals("", StringUtils.normalizeSpace("\u001E"));
-        assertEquals("", StringUtils.normalizeSpace("\u001F"));
-        assertEquals("", StringUtils.normalizeSpace("\f"));
-        assertEquals("", StringUtils.normalizeSpace("\r"));
-        assertEquals("a", StringUtils.normalizeSpace("  a  "));
-        assertEquals("a b c", StringUtils.normalizeSpace("  a  b   c  "));
-        assertEquals("a b c", StringUtils.normalizeSpace("a\t\f\r  b\u000B   c\n"));
-        assertEquals("a   b c", StringUtils.normalizeSpace("a\t\f\r  " + HARD_SPACE + HARD_SPACE + "b\u000B   c\n"));
-        assertEquals("b", StringUtils.normalizeSpace("\u0000b"));
-        assertEquals("b", StringUtils.normalizeSpace("b\u0000"));
+        assertNull(StringUtils.normalizeSpace(null));//2
+        assertEquals("", StringUtils.normalizeSpace(""));//3
+        assertEquals("", StringUtils.normalizeSpace(" "));//4
+        assertEquals("", StringUtils.normalizeSpace("\t"));//5
+        assertEquals("", StringUtils.normalizeSpace("\n"));//6
+        assertEquals("", StringUtils.normalizeSpace("\u0009"));//7
+        assertEquals("", StringUtils.normalizeSpace("\u000B"));//8
+        assertEquals("", StringUtils.normalizeSpace("\u000C"));//9
+        assertEquals("", StringUtils.normalizeSpace("\u001C"));//10
+        assertEquals("", StringUtils.normalizeSpace("\u001D"));//11
+        assertEquals("", StringUtils.normalizeSpace("\u001E"));//12
+        assertEquals("", StringUtils.normalizeSpace("\u001F"));//13
+        assertEquals("", StringUtils.normalizeSpace("\f"));//14
+        assertEquals("", StringUtils.normalizeSpace("\r"));//15
+        assertEquals("a", StringUtils.normalizeSpace("  a  "));//16
+        assertEquals("a b c", StringUtils.normalizeSpace("  a  b   c  "));//17
+        assertEquals("a b c", StringUtils.normalizeSpace("a\t\f\r  b\u000B   c\n"));//18
+        assertEquals("a   b c", StringUtils.normalizeSpace("a\t\f\r  " + HARD_SPACE + HARD_SPACE + "b\u000B   c\n"));//19
+        assertEquals("b", StringUtils.normalizeSpace("\u0000b"));//20
+        assertEquals("b", StringUtils.normalizeSpace("b\u0000"));//21
     }
 
     @Test
