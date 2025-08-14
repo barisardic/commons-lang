@@ -826,17 +826,17 @@ class StringUtilsTest extends AbstractLangTest {
     void testGetLevenshteinDistance_StringString() {
         assertEquals(0, StringUtils.getLevenshteinDistance("", "")); //1
         assertEquals(1, StringUtils.getLevenshteinDistance("", "a"));//2
-        assertEquals(7, StringUtils.getLevenshteinDistance("aaapppp", ""));//3
+        assertEquals(7, StringUtils.getLevenshteinDistance("aaapppp", ""));//2
 
-        assertEquals(1, StringUtils.getLevenshteinDistance("frog", "fog"));//4
-        assertEquals(3, StringUtils.getLevenshteinDistance("fly", "ant"));//5
-        assertEquals(7, StringUtils.getLevenshteinDistance("elephant", "hippo"));//6
+        assertEquals(1, StringUtils.getLevenshteinDistance("frog", "fog"));//3
+        assertEquals(3, StringUtils.getLevenshteinDistance("fly", "ant"));//4
+        assertEquals(7, StringUtils.getLevenshteinDistance("elephant", "hippo"));//5
 
-        assertEquals(7, StringUtils.getLevenshteinDistance("hippo", "elephant"));//7
-        assertEquals(8, StringUtils.getLevenshteinDistance("hippo", "zzzzzzzz"));//8
-        assertEquals(8, StringUtils.getLevenshteinDistance("zzzzzzzz", "hippo"));//9
+        assertEquals(7, StringUtils.getLevenshteinDistance("hippo", "elephant"));//6
+        assertEquals(8, StringUtils.getLevenshteinDistance("hippo", "zzzzzzzz"));//7
+        assertEquals(8, StringUtils.getLevenshteinDistance("zzzzzzzz", "hippo"));//7
 
-        assertEquals(1, StringUtils.getLevenshteinDistance("hello", "hallo"));//10
+        assertEquals(1, StringUtils.getLevenshteinDistance("hello", "hallo"));//8
     }
 
     @Test
@@ -1339,28 +1339,29 @@ class StringUtilsTest extends AbstractLangTest {
     @Test
     void testNormalizeSpace() {
         // Java says a non-breaking whitespace is not a whitespace.
-        assertFalse(Character.isWhitespace('\u00A0')); //1
+        assertFalse(Character.isWhitespace('\u00A0')); //-
         //
-        assertNull(StringUtils.normalizeSpace(null));//2
-        assertEquals("", StringUtils.normalizeSpace(""));//3
-        assertEquals("", StringUtils.normalizeSpace(" "));//4
-        assertEquals("", StringUtils.normalizeSpace("\t"));//5
-        assertEquals("", StringUtils.normalizeSpace("\n"));//6
-        assertEquals("", StringUtils.normalizeSpace("\u0009"));//7
-        assertEquals("", StringUtils.normalizeSpace("\u000B"));//8
-        assertEquals("", StringUtils.normalizeSpace("\u000C"));//9
-        assertEquals("", StringUtils.normalizeSpace("\u001C"));//10
-        assertEquals("", StringUtils.normalizeSpace("\u001D"));//11
-        assertEquals("", StringUtils.normalizeSpace("\u001E"));//12
-        assertEquals("", StringUtils.normalizeSpace("\u001F"));//13
-        assertEquals("", StringUtils.normalizeSpace("\f"));//14
-        assertEquals("", StringUtils.normalizeSpace("\r"));//15
-        assertEquals("a", StringUtils.normalizeSpace("  a  "));//16
-        assertEquals("a b c", StringUtils.normalizeSpace("  a  b   c  "));//17
-        assertEquals("a b c", StringUtils.normalizeSpace("a\t\f\r  b\u000B   c\n"));//18
-        assertEquals("a   b c", StringUtils.normalizeSpace("a\t\f\r  " + HARD_SPACE + HARD_SPACE + "b\u000B   c\n"));//19
-        assertEquals("b", StringUtils.normalizeSpace("\u0000b"));//20
-        assertEquals("b", StringUtils.normalizeSpace("b\u0000"));//21
+        assertNull(StringUtils.normalizeSpace(null));//1
+        assertEquals("", StringUtils.normalizeSpace(""));//2
+        assertEquals("", StringUtils.normalizeSpace(" "));//3
+        assertEquals("", StringUtils.normalizeSpace("\t"));//4
+        assertEquals("", StringUtils.normalizeSpace("\n"));//5
+        assertEquals("", StringUtils.normalizeSpace("\u0009"));//6 \t  6 is used for all unicode representation
+        assertEquals("", StringUtils.normalizeSpace("\u000B"));//6 \u000b
+        assertEquals("", StringUtils.normalizeSpace("\u000C"));//6 \f
+        assertEquals("", StringUtils.normalizeSpace("\u001C"));//6 \File Separator (FS)
+        assertEquals("", StringUtils.normalizeSpace("\u001D"));//6 \r
+        assertEquals("", StringUtils.normalizeSpace("\u001E"));//6 Record Separator
+        assertEquals("", StringUtils.normalizeSpace("\u001F"));//6 Unit Separator
+
+        assertEquals("", StringUtils.normalizeSpace("\f"));//7
+        assertEquals("", StringUtils.normalizeSpace("\r"));//8
+        assertEquals("a", StringUtils.normalizeSpace("  a  "));//9
+        assertEquals("a b c", StringUtils.normalizeSpace("  a  b   c  "));//10
+        assertEquals("a b c", StringUtils.normalizeSpace("a\t\f\r  b\u000B   c\n"));//11 / mix of whitespace characters
+        assertEquals("a   b c", StringUtils.normalizeSpace("a\t\f\r  " + HARD_SPACE + HARD_SPACE + "b\u000B   c\n"));//12 U+00A0
+        assertEquals("b", StringUtils.normalizeSpace("\u0000b"));//13
+        assertEquals("b", StringUtils.normalizeSpace("b\u0000"));//13
     }
 
     @Test

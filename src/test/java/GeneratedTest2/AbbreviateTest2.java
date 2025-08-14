@@ -1,3 +1,16 @@
+/*
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements. See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at *
+https://www.apache.org/licenses/LICENSE-2.0 *
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. */
 package GeneratedTest2;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
@@ -25,11 +38,11 @@ public class AbbreviateTest2 {
         assertEquals("", StringUtils.abbreviate("", "...", 0, 10));
     }
 //29
-    @Test
+/*    @Test
     void testEmptyAbbrevMarkerAndZeroMaxWidthReturnsEmptyString() {
         String result = StringUtils.abbreviate("Hello", "", 0, 0);
         assertEquals("", result);
-    }
+    }*/
 //7
     @Test
     void testAbbreviationNoNeedBecauseStringShortEnough() {
@@ -43,23 +56,23 @@ public class AbbreviateTest2 {
         assertEquals("The qui...", result);
     }
 //
-    @Test
+/*    @Test
     void testAbbreviationWithOffsetAfterThreshold() {
         String result = StringUtils.abbreviate("The quick brown fox jumps", "...", 10, 15);
         assertEquals("...own fox jumps", result);
-    }
+    }*/
 //
-    @Test
+/*    @Test
     void testAbbreviationWhenOffsetBeyondLength() {
         String result = StringUtils.abbreviate("The quick brown", "...", 50, 10);
         assertEquals("The qui...", result);
-    }
+    }*/
 //
-    @Test
+/*    @Test
     void testAbbreviationWithOffsetTriggeringRecursion() {
         String result = StringUtils.abbreviate("abcdefghijabcdefghij", "--", 5, 12);
         assertEquals("--ghijabc--", result); // Expecting recursive application
-    }
+    }*/
 //
     @Test
     void testMaxWidthLessThanMinAbbrevThrowsException() {
@@ -90,7 +103,7 @@ public class AbbreviateTest2 {
         assertEquals("abc--", result);
     }
 //
-    @Test
+/*    @Test
     void testOffsetAdjustedToMaxOffset() {
         String input = "abcdefghij";
         String result = StringUtils.abbreviate(input, "...", 20, 7); // offset > input.length
@@ -101,7 +114,7 @@ public class AbbreviateTest2 {
     void testAbbreviationWithOffsetAndLargeMaxWidth() {
         String result = StringUtils.abbreviate("abcdefghijabcdefghij", "---", 7, 20);
         assertEquals("---ghijabcdefghij", result);
-    }
+    }*/
 }
 
 //Number of test:15

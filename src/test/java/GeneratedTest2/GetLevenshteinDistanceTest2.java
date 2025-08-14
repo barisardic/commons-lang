@@ -1,16 +1,29 @@
+/*
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements. See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at *
+https://www.apache.org/licenses/LICENSE-2.0 *
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. */
 package GeneratedTest2;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetLevenshteinDistanceTest2 {
-    //+ Non-empty identical strings 0 distance
+    //+ ok test
     @Test
     public void testIdenticalStrings() {
         assertEquals(0, StringUtils.getLevenshteinDistance("kitten", "kitten"));
     }
 
-    //5
+    //4
     @Test
     public void testCompletelyDifferentStrings() {
         assertEquals(6, StringUtils.getLevenshteinDistance("kitten", "orange"));
@@ -22,19 +35,19 @@ public class GetLevenshteinDistanceTest2 {
         assertEquals(1, StringUtils.getLevenshteinDistance("kitten", "kittena".substring(0, 6) + "a"));
     }
 
-    //4
+    //3
     @Test
     public void testInsertion() {
         assertEquals(1, StringUtils.getLevenshteinDistance("abc", "abxc"));
     }
 
-    //4
+    //3
     @Test
     public void testDeletion() {
         assertEquals(1, StringUtils.getLevenshteinDistance("abcd", "acd"));
     }
 
-    //4
+    //8
     @Test
     public void testSubstitution() {
         assertEquals(1, StringUtils.getLevenshteinDistance("abc", "axc"));
@@ -46,7 +59,7 @@ public class GetLevenshteinDistanceTest2 {
         assertEquals(4, StringUtils.getLevenshteinDistance("", "test"));
     }
 
-    //3
+    //2
     @Test
     public void testEmptySecondString() {
         assertEquals(3, StringUtils.getLevenshteinDistance("abc", ""));
@@ -58,19 +71,19 @@ public class GetLevenshteinDistanceTest2 {
         assertEquals(0, StringUtils.getLevenshteinDistance("", ""));
     }
 
-    //+ Null first argument
+    //+ precondition test
     @Test
     public void testNullFirstStringThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> StringUtils.getLevenshteinDistance(null, "abc"));
     }
 
-    //+ Null second argument
+    //+ precondition test
     @Test
     public void testNullSecondStringThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> StringUtils.getLevenshteinDistance("abc", null));
     }
 
-    //6,7
+    //6
     @Test
     public void testSymmetry() {
         String a = "gumbo";
@@ -81,7 +94,7 @@ public class GetLevenshteinDistanceTest2 {
         );
     }
 /*
-//+ Bad Testing
+//+ ok test
     @Test
     public void testLargeStrings() {
         String a = "a".repeat(1000);
@@ -91,6 +104,7 @@ public class GetLevenshteinDistanceTest2 {
 */
 }
 //Number of test: 13
-//Number of test match:7
+//matches 4 3 8 2 1
+//Number of test match:5
 //New test scenarios:5
-//Number duplicate:2
+//Number duplicate:0
