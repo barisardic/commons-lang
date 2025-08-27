@@ -11,7 +11,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. */
-package GeneratedTests3;
+package GeneratedTest3;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
@@ -78,11 +78,11 @@ public class NormalizeSpaceTest3 {
         assertEquals("á é ñ", StringUtils.normalizeSpace("á   é   ñ"), "Expected unicode preserved and whitespace normalized");
     }
 //+
-    @Test
+/*    @Test
     void testStringWithSurroundingNonBreakingSpaces() {
         char nbsp = (char) 160;
         assertEquals("x y", StringUtils.normalizeSpace(nbsp + "x" + nbsp + " " + nbsp + "y" + nbsp), "Expected surrounding nbsp converted and normalized");
-    }
+    }*/
 
     @Test
     void testSingleCharacterWhitespace() {

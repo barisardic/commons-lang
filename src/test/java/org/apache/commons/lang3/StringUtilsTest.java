@@ -355,11 +355,11 @@ class StringUtilsTest extends AbstractLangTest {
                 {"foo\n\rfoo", "foo\n\rfoo"},//9
                 {"\n", ""},//10
                 {"\r", ""},//11
-                {"a", "a"},//12
-                {"\r\n", ""},//13
-                {"", ""},//14
-                {null, null},//15
-                {FOO_UNCAP + "\n\r", FOO_UNCAP + "\n"}//16
+                {"a", "a"},//duplicate of 5
+                {"\r\n", ""},//12
+                {"", ""},//13
+                {null, null},//14
+                {FOO_UNCAP + "\n\r", FOO_UNCAP + "\n"}//15
         };
         for (final String[] chompCase : chompCases) {
             final String original = chompCase[0];

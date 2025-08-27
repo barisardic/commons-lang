@@ -11,8 +11,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. */
-package GeneratedTests3;
-import org.apache.commons.lang3.StringUtils;
+package GeneratedTest3;
 import org.junit.jupiter.api.Test;
 
 import static org.apache.commons.lang3.StringUtils.chomp;
@@ -25,12 +24,12 @@ public class ChompTest3 {
 
 
     // --- Test cases ---
-//15
+//14
     @Test
     public void testNullInput() {
         assertNull(chomp(null));
     }
-//14
+//13
     @Test
     public void testEmptyString() {
         assertEquals("", chomp(""));
@@ -65,17 +64,17 @@ public class ChompTest3 {
     public void testCRSoloEnding() {
         assertEquals("line", chomp("line\r"));
     }
-//5
+//duplicate of 5
     @Test
     public void testNoNewlineAtEnd() {
         assertEquals("line", chomp("line"));
     }
-//2,8
+//8
     @Test
     public void testEmbeddedNewlinesOnlyRemoveFinal() {
         assertEquals("line1\nline2", chomp("line1\nline2\n"));
     }
-//+ Testing if string is trimmed in thr method. Good test
+    //+ good test, testing if string is trimmed in the method.
     @Test
     public void testEmbeddedCRLFOnlyRemoveFinal() {
         assertEquals("line1\r\nline2", chomp("line1\r\nline2\r\n"));
@@ -87,7 +86,11 @@ public class ChompTest3 {
     }
 
 }
-//Number of test:12
-//Number of test match:10
-//New test scenarios:1
-//Number duplicate:2
+
+// 12 generated assertions (with negatives)
+// 12 scenarios
+// 0 failing scenarios
+// 14,13,11,10,5,1,2,3,8,6 matched
+// 10 matches
+// 1 duplicates
+// 1 + [new] tests

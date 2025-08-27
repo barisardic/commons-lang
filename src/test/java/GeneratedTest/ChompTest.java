@@ -17,12 +17,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class ChompTest {
 
-//15
+//14
     @Test
     void testNullInput() {
         assertNull(StringUtils.chomp(null));
     }
-//14
+//13
     @Test
     void testEmptyString() {
         assertEquals("", StringUtils.chomp(""));
@@ -57,32 +57,32 @@ public class ChompTest {
     void testEndsWithCR() {
         assertEquals("hello", StringUtils.chomp("hello\r"));
     }
-//5
+//duplicate of 5
     @Test
     void testNoTrailingNewline() {
         assertEquals("hello", StringUtils.chomp("hello"));
     }
-//13
+//12
     @Test
     void testOnlyCRLF() {
         assertEquals("", StringUtils.chomp("\r\n"));
     }
-//2,8
+//8
     @Test
     void testMultipleLines() {
         assertEquals("line1\nline2", StringUtils.chomp("line1\nline2\n"));
     }
-//1,9
+    // + ok test, internal \r\n
     @Test
     void testMultipleLinesWithCRLF() {
         assertEquals("line1\r\nline2", StringUtils.chomp("line1\r\nline2\r\n"));
     }
-//+ Testing if string is trimmed in thr method. Good test.
+//+ good test, testing if string is trimmed in the method.
     @Test
     void testWhitespaceAfterNewline() {
         assertEquals("test\n ", StringUtils.chomp("test\n "));
     }
-// 16
+// 15
 //    @Test
 //    void testEndsWithLFThenCR() {
 //        // Edge case: unlikely but checks logic
@@ -90,7 +90,10 @@ public class ChompTest {
 //    }
 
 }
-//Number of test: 14
-//Number of test match:12
-//New test scenarios:1
-//Number duplicate:3
+// 14 generated assertions (with negatives)
+// 14 scenarios
+// 1 failing scenarios
+// 14,13,11,10,5,2,1,3,12,8,15 matched
+// 11 matches
+// 1 duplicates
+// 2 + [new] tests

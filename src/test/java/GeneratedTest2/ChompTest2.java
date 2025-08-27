@@ -19,12 +19,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ChompTest2 {
 
-//15
+//14
     @Test
 void testNullInput() {
     assertNull(StringUtils.chomp(null), "Should return null when input is null");
 }
-//14
+//13
     @Test
     void testEmptyString() {
         assertEquals("", StringUtils.chomp(""), "Should return empty string when input is empty");
@@ -59,7 +59,7 @@ void testNullInput() {
     void testEndsWithCROnly() {
         assertEquals("hello", StringUtils.chomp("hello\r"), "Should remove CR");
     }
-//5
+//duplicate of 5
     @Test
     void testNoNewlineAtEnd() {
         assertEquals("hello", StringUtils.chomp("hello"), "Should return unchanged string");
@@ -69,12 +69,12 @@ void testNullInput() {
     void testNewlineInMiddleOnly() {
         assertEquals("hello\nworld", StringUtils.chomp("hello\nworld"), "Should not remove middle newline");
     }
-//2,8
+//duplicate of 2,8
     @Test
     void testMultipleNewlinesAtEnd() {
         assertEquals("line1\nline2", StringUtils.chomp("line1\nline2\n"), "Should remove only the final LF");
     }
-//+
+//duplicate of 1
     @Test
     void testEndsWithCRLFAndExtraCR() {
         assertEquals("line\r", StringUtils.chomp("line\r\r\n"), "Should remove only final CRLF");
@@ -84,3 +84,11 @@ void testNullInput() {
 //Number of test match:9
 //New test scenarios:1
 //Number duplicate:2
+
+// 12 generated assertions (with negatives)
+// 12 scenarios
+// 0 failing scenarios
+// 14,13,10,11,5,1,2,3,8 matched
+// 9 matches
+// 3 duplicates
+// 0 + [new] tests
