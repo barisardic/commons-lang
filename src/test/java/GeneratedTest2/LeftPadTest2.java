@@ -22,7 +22,7 @@ public class LeftPadTest2 {
     void testNullString() {
         assertNull(StringUtils.leftPad(null, 5, "*"));
     }
-//+
+//3
     @Test
     void testEmptyString() {
         assertEquals("*****", StringUtils.leftPad("", 5, "*"));
@@ -31,7 +31,7 @@ public class LeftPadTest2 {
     @Test
     void testNoPaddingNeeded() {
 
-// + Testing if size equal to str length
+// + ok test, size=str.length() no padding
         assertEquals("abc", StringUtils.leftPad("abc", 3, "*"));
 
 //7
@@ -44,7 +44,7 @@ public class LeftPadTest2 {
 //4
         assertEquals("***abc", StringUtils.leftPad("abc", 6, "*"));
 
-//10
+//duplicate of 4
         assertEquals("   abc", StringUtils.leftPad("abc", 6, " "));
     }
 
@@ -52,10 +52,10 @@ public class LeftPadTest2 {
     void testPaddingWithMultiCharPad() {
         //6
         assertEquals("xyxabc", StringUtils.leftPad("abc", 6, "xy"));
-        //6
+        //duplicate of 6
         assertEquals("12312abc", StringUtils.leftPad("abc", 8, "123"));
     }
-//6
+//duplicate of 6
     @Test
     void testPadStrLongerThanNeeded() {
         assertEquals("xyabc", StringUtils.leftPad("abc", 5, "xyz"));
@@ -73,12 +73,12 @@ public class LeftPadTest2 {
         //9
         assertEquals("   abc", StringUtils.leftPad("abc", 6, null));
     }
-//5
+//duplicate of 5
     @Test
     void testPadStrSameSize() {
         assertEquals("xyzabc", StringUtils.leftPad("abc", 6, "xyz"));
     }
-//7
+//duplicate of 7
     @Test
     void testPadSizeSmallerThanOriginal() {
         assertEquals("abcdef", StringUtils.leftPad("abcdef", 3, "*"));
@@ -87,12 +87,12 @@ public class LeftPadTest2 {
 
     @Test
     void testPadWithSpecialCharacters() {
-        //+ Testing Special Characters
+        // + ok test special chars
         assertEquals("@@abc", StringUtils.leftPad("abc", 5, "@"));
-        //Duplicate
+        //duplicate of above, fails due to expected value
         //assertEquals("??abc", StringUtils.leftPad("abc", 6, "?"));
     }
-//+ Large padding size (1,000 chars)
+// + ok test large padding
     @Test
     void testLargePadding() {
         String result = StringUtils.leftPad("abc", 1000, "x");
@@ -100,9 +100,11 @@ public class LeftPadTest2 {
         assertTrue(result.endsWith("abc"));
     }
 }
-//Number of test: 12
-//Number of test match:8
-//New test scenarios:3
-//Number of apache test:10
-//duplicate:4
-// failing: 1
+
+// 18 generated assertions (with negatives)
+// 17 scenarios
+// 1 failing scenarios
+// 1,3,7,4,6,5,10,9 matched
+// 8 matches
+// 6 duplicates
+// 3 + [new] tests

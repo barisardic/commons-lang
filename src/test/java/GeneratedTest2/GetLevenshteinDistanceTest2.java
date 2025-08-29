@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetLevenshteinDistanceTest2 {
-    //+ ok test
+    //+ ok test, identical word, distance 0
     @Test
     public void testIdenticalStrings() {
         assertEquals(0, StringUtils.getLevenshteinDistance("kitten", "kitten"));
@@ -29,19 +29,19 @@ public class GetLevenshteinDistanceTest2 {
         assertEquals(6, StringUtils.getLevenshteinDistance("kitten", "orange"));
     }
 
-    //+
+    //3, weird but single deletion away
     @Test
     public void testSingleCharacterChange() {
         assertEquals(1, StringUtils.getLevenshteinDistance("kitten", "kittena".substring(0, 6) + "a"));
     }
 
-    //3
+    //duplicate of 3
     @Test
     public void testInsertion() {
         assertEquals(1, StringUtils.getLevenshteinDistance("abc", "abxc"));
     }
 
-    //3
+    //duplicate of 3
     @Test
     public void testDeletion() {
         assertEquals(1, StringUtils.getLevenshteinDistance("abcd", "acd"));
@@ -58,7 +58,6 @@ public class GetLevenshteinDistanceTest2 {
     public void testEmptyFirstString() {
         assertEquals(4, StringUtils.getLevenshteinDistance("", "test"));
     }
-
     //2
     @Test
     public void testEmptySecondString() {
@@ -71,13 +70,13 @@ public class GetLevenshteinDistanceTest2 {
         assertEquals(0, StringUtils.getLevenshteinDistance("", ""));
     }
 
-    //+ precondition test
+    //+ precondition test,, s null
     @Test
     public void testNullFirstStringThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> StringUtils.getLevenshteinDistance(null, "abc"));
     }
 
-    //+ precondition test
+    //+ precondition test, t null
     @Test
     public void testNullSecondStringThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> StringUtils.getLevenshteinDistance("abc", null));
@@ -94,7 +93,7 @@ public class GetLevenshteinDistanceTest2 {
         );
     }
 /*
-//+ ok test
+// + ok test, large string
     @Test
     public void testLargeStrings() {
         String a = "a".repeat(1000);
@@ -103,8 +102,10 @@ public class GetLevenshteinDistanceTest2 {
     }
 */
 }
-//Number of test: 13
-//matches 4 3 8 2 1
-//Number of test match:5
-//New test scenarios:5
-//Number duplicate:0
+// 13 generated assertions (with negatives)
+// 13 scenarios
+// 1 failing scenarios
+// 4,3,8,2,1,6 matched
+// 6 matches
+// 2 duplicates
+// 4 + [new] tests

@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GetLevenshteinDistanceTest {
 
-//+ ok test
+//+ ok test, identical word, distance 0
     @Test
 void testIdenticalStrings() {
     assertEquals(0, StringUtils.getLevenshteinDistance("test", "test"));
@@ -45,14 +45,14 @@ void testIdenticalStrings() {
         assertEquals(0, StringUtils.getLevenshteinDistance("", ""));
     }
 
-// + precondition test
+    // + precondition test, s is null
     @Test
     void testNullFirstStringThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             StringUtils.getLevenshteinDistance(null, "test");
         });
     }
-// + precondition test
+// + precondition test, t is null
     @Test
     void testNullSecondStringThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
@@ -64,7 +64,7 @@ void testIdenticalStrings() {
     void testInsertion() {
         assertEquals(1, StringUtils.getLevenshteinDistance("test", "tests"));
     }
-// [3]
+// [6]
     @Test
     void testDeletion() {
         assertEquals(1, StringUtils.getLevenshteinDistance("tests", "test"));
@@ -74,30 +74,32 @@ void testIdenticalStrings() {
     void testSubstitution() {
         assertEquals(1,StringUtils.getLevenshteinDistance("test", "tent"));
     }
-// [6]
+// duplicate of 6
     @Test
     void testSwappedStrings() {
         // s is longer than t, so it should swap internally
         assertEquals(1, StringUtils.getLevenshteinDistance("testing", "testin"));
     }
-//+ ok test
+//+ ok test, difference caused by a Unicode character similar to a standard character
 //    @Test
 //    void testUnicodeStrings() {
 //        assertEquals(1, StringUtils.getLevenshteinDistance("türk", "turk"));
 //    }
 
-    // + ok test
+// 5
     @Test
     void testLongerStrings() {
         String s1 = "kitten";
         String s2 = "sitting";
         assertEquals(3, StringUtils.getLevenshteinDistance(s1, s2));
     }
+// 12 generated assertions (with negatives)
+//  scenarios
+// 1 failing scenarios
+// 4,2,1,3,6,8,5 matched
+// 7 matches
+// 1 duplicates
+// 3 + [new] tests
 
 }
-// 12 generated assertions
-//There are 8 scenarios in apache  of them used in generated test
-// 4,2,1,3,8,6 are matched
-// 6 matches
-// 5 + [new] tests
-// 1 failing
+

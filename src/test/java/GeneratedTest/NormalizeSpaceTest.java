@@ -36,58 +36,58 @@ public class NormalizeSpaceTest {
     void testWhitespaceOnly() {
         assertEquals("", normalizeSpace("   "), "Whitespace-only string should return empty string");
     }
-//16
+//9
     @Test
     void testLeadingAndTrailingWhitespace() {
         assertEquals("Hello World", normalizeSpace("   Hello World   "), "Should trim leading and trailing whitespace");
     }
-//17
+//10
     @Test
     void testMultipleInternalSpaces() {
         assertEquals("Hello World", normalizeSpace("Hello    World"), "Should reduce multiple spaces to single space");
     }
-//3
+//4
     @Test
     void testMixedTabsAndSpaces() {
         assertEquals("Hello World", normalizeSpace("Hello\t\tWorld"), "Should normalize tabs to single space");
     }
-//4, 14
+//5,8
     @Test
     void testNewlinesAndSpaces() {
         assertEquals("Hello World Example", normalizeSpace(" Hello \n World \r\n Example "), "Should normalize newlines and spaces");
     }
-//+
+//duplicate of 12, but not a great way to test this
     @Test
     void testUnicodeNonBreakingSpace() {
         assertEquals("Hello World", normalizeSpace("Hello\u00A0World"), "Should convert non-breaking spaces to normal spaces");
     }
-//4, 5
+//duplicate of 4
     @Test
     void testMultipleMixedWhitespaceSequences() {
         assertEquals("A B C D", normalizeSpace("  A\t\tB \n C   D  "), "Should normalize mixed whitespace sequences");
     }
-//+
+//+ ok test no space
     @Test
     void testSingleWordNoWhitespace() {
         assertEquals("Hello", normalizeSpace("Hello"), "Should leave single word unchanged");
     }
-//4, 5 ,13, 14
+//7
     @Test
     void testAllWhitespaceCharacters() {
         String input = " \t\n\r\f";
         assertEquals("", normalizeSpace(input), "Should return empty string for all whitespace characters");
     }
-//15
+//duplicate of 9
     @Test
     void testTrailingWhitespaceOnly() {
         assertEquals("Hello", normalizeSpace("Hello    "), "Should trim trailing whitespace");
     }
-//15
+//duplicate of 9
     @Test
     void testLeadingWhitespaceOnly() {
         assertEquals("Hello", normalizeSpace("   Hello"), "Should trim leading whitespace");
     }
-//4
+//duplicate of 4
     @Test
     void testWhitespaceBetweenWords() {
         assertEquals("A B", normalizeSpace("A  \t  B"), "Should normalize mixed spaces between words");
@@ -97,13 +97,13 @@ public class NormalizeSpaceTest {
     void testNoSpacesToNormalize() {
         assertEquals("ABC", normalizeSpace("ABC"), "Should leave string unchanged if no spaces to normalize");
     }
-//+ failing because it incorectly expects \u00A0 to be normalize
+//12, failing because it incorectly expects \u00A0 to be normalized
 //    @Test
 //    void testMultipleNonBreakingSpaces() {
 //        assertEquals("A B C", normalizeSpace("\u00A0A\u00A0\u00A0B\u00A0C\u00A0"), "Should normalize multiple non-breaking spaces");
 //    }
 
-//4,5,13,14
+//duplicate
     @Test
     void testLongStringWithRandomWhitespace() {
         String input = "   This   is \t a \n test \r\n string   ";
@@ -112,6 +112,10 @@ public class NormalizeSpaceTest {
     }
 
 }
-
-//There are 21 test in apache 10 of them used in generated tests
-//Test 6-12 , 17-20 from apache are missing
+// 17 generated assertions (with negatives)
+// 17 scenarios
+// 1 failing scenarios
+// 1,2,3,9,10,4,5,8,7,12 matched
+// 10 matches
+// 7 duplicates
+// 1 + [new] tests

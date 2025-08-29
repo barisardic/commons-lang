@@ -40,7 +40,7 @@ public class RepeatTest {
     void testEmptyString() {
         assertEquals("", repeat("", 5), "Empty string should always return empty string");
     }
-//7
+//+ ok test, count is 1, same string returned
     @Test
     void testCountOne() {
         assertEquals("abc", repeat("abc", 1), "Count of one should return original string");
@@ -60,14 +60,14 @@ public class RepeatTest {
     void testMultiCharacterString() {
         assertEquals("abcabcabc", repeat("abc", 3), "Multi character string should repeat correctly");
     }
-//8,9
+//8
     @Test
     void testCountLarge() {
         String repeated = repeat("x", 1000);
         assertNotNull(repeated, "Result should not be null for large count");
         assertEquals(1000, repeated.length(), "Length should match input length times count");
     }
-//8,9
+//duplicate of 8
     @Test
     void testSingleCharacterAtPadLimit() {
         final int PAD_LIMIT = 8192; // Typically the limit in Commons Lang
@@ -75,7 +75,7 @@ public class RepeatTest {
         assertNotNull(repeated);
         assertEquals(PAD_LIMIT, repeated.length(), "Should handle count equal to PAD_LIMIT");
     }
-//8,9
+//+ ok test, above pad limit
     @Test
     void testSingleCharacterAbovePadLimit() {
         final int PAD_LIMIT = 8192; // Typically the limit in Commons Lang
@@ -83,44 +83,51 @@ public class RepeatTest {
         assertNotNull(repeated);
         assertEquals(PAD_LIMIT + 1, repeated.length(), "Should handle count above PAD_LIMIT");
     }
-//+
+//duplicate of 4
     @Test
     void testWhitespaceString() {
         assertEquals("     ", repeat(" ", 5), "Whitespace string should repeat correctly");
     }
-//+
+    // + ok test repeating unicode symbol
     @Test
     void testUnicodeCharacter() {
         assertEquals("ééééé", repeat("é", 5), "Unicode single char should repeat correctly");
     }
-// Similar logic testUnicodeCharacter
+// duplicate of above
     @Test
     void testUnicodeString() {
         assertEquals("你好你好你好", repeat("你好", 3), "Unicode multi-char string should repeat correctly");
     }
-//+ ???
+//duplicate of count is one
     @Test
     void testRepeatSameReference() {
         String input = "test";
         String result = repeat(input, 1);
         assertSame(input, result, "If count is one, should return same reference");
     }
-//4
+//duplicate of 4
     @Test
     void testRepeatSingleCharacterIsOptimized() {
         assertEquals("zzz", repeat("z", 3), "Single character repeat should be optimized");
     }
-//6
+//duplicate of 6
     @Test
     void testRepeatTwoCharacterIsOptimized() {
         assertEquals("xyxyxyxy", repeat("xy", 4), "Two character repeat should be optimized");
     }
-//7
+//duplicate of 7
     @Test
     void testRepeatMultiCharacterFallback() {
         assertEquals("abcdabcd", repeat("abcd", 2), "Multi character repeat should use StringBuilder fallback");
     }
 
 }
+// 18 generated assertions (with negatives)
+// 18 scenarios
+// 0 failing scenarios
+// 1,2,5,3,4,6,7,8 matched
+// 8 matches
+// 7 duplicates
+// 3 + [new] tests
 
 // All 9 test from apache are covered in generated tests

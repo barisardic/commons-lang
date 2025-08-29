@@ -28,16 +28,16 @@ public class LeftPadTest3 {
     public void testNoPaddingNeeded() {
 // 7
         assertEquals("hello", leftPad("hello", 3, "*"));
-// + Testing if size equal to str length
+// + ok test, size=str.length() no padding
         assertEquals("hello", leftPad("hello", 5, "*"));
     }
 
 
     @Test
     public void testPaddingWithSingleChar() {
-     //4
+        //4
         assertEquals("***hi", leftPad("hi", 5, "*"));
-       //10
+        //duplicate of 4
         assertEquals("   hi", leftPad("hi", 5, " "));
     }
 //10
@@ -55,7 +55,7 @@ public class LeftPadTest3 {
     public void testExactPadLength() {
         assertEquals("1234hi", leftPad("hi", 6, "1234"));
     }
-//4
+//duplicate of 4
     @Test
     public void testPadStrShorterThanPads() {
         assertEquals("1212hi", leftPad("hi", 6, "12"));
@@ -65,13 +65,13 @@ public class LeftPadTest3 {
     public void testPadStrLongerThanPads() {
         assertEquals("12hi", leftPad("hi", 4, "1234"));
     }
-//4
+//duplicate of 4
     @Test
     public void testPadStrWithSpecialCharacters() {
         assertEquals("~!~!hi", leftPad("hi", 6, "~!"));
     }
 
-    //+ Large padding size (1,000 chars)
+    // + ok test large padding
     @Test
     public void testVeryLargePadding() {
         String result = leftPad("x", 10000, "ab");
@@ -79,7 +79,12 @@ public class LeftPadTest3 {
         assertTrue(result.endsWith("x"));
     }
 }
-//Number of test: 12
-//Number of test match: 8
-//New test scenarios:2
-//Number duplicate:3
+
+// 13 generated assertions (with negatives)
+// 12 scenarios
+// 0 failing scenarios
+// 1,7,4,10,9,5,6 matched
+// 7 matches
+// 3 duplicates
+// 2 + [new] tests
+

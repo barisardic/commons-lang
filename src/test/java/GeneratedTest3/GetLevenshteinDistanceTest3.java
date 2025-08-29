@@ -18,12 +18,12 @@ import org.junit.jupiter.api.Test;
 public class GetLevenshteinDistanceTest3 {
 
 
-    //+ ok test
+//+ ok test, identical word, distance 0
         @Test
         void testSameStrings() {
             assertEquals(0, getLevenshteinDistance("kitten", "kitten"));
         }
-    //5
+//5
         @Test
         void testCompletelyDifferentStrings() {
             assertEquals(6, getLevenshteinDistance("kitten", "puppies"));
@@ -38,7 +38,7 @@ public class GetLevenshteinDistanceTest3 {
         void testInsertion() {
             assertEquals(1, getLevenshteinDistance("kitten", "kittena"));
         }
-//3
+//6
         @Test
         void testDeletion() {
             assertEquals(1, getLevenshteinDistance("kitten", "kiten"));
@@ -58,29 +58,33 @@ public class GetLevenshteinDistanceTest3 {
         void testBothStringsEmpty() {
             assertEquals(0, getLevenshteinDistance("", ""));
         }
-//+ ok test testing letter sensitivity
+//+ ok test, testing letter sensitivity
         @Test
         void testCaseSensitivity() {
             assertEquals(1, getLevenshteinDistance("Kitten", "kitten"));
         }
-    //+ precondition test
+// + precondition test, s is null
         @Test
         void testNullFirstString() {
             assertThrows(IllegalArgumentException.class, () -> getLevenshteinDistance(null, "test"));
         }
-    //+ precondition test
+//+ precondition test, t is null
         @Test
         void testNullSecondString() {
             assertThrows(IllegalArgumentException.class, () -> getLevenshteinDistance("test", null));
         }
-    //+ precondition test
+//duplicate
         @Test
         void testNullBothStrings() {
             assertThrows(IllegalArgumentException.class, () -> getLevenshteinDistance(null, null));
         }
 }
-//Number of test: 12
-// 5 matches
-//Number of test match:5,8,3,2,1
-//+ New test scenarios:5
-//Number duplicate:0
+
+// 12 generated assertions (with negatives)
+// 12 scenarios
+// 0 failing scenarios
+// 5,8,3,6,2,1 matched
+// 6 matches
+// 1 duplicates
+// 4 + [new] tests
+

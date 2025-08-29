@@ -30,7 +30,7 @@ public class LeftPadTest {
     void testPadSizeLessThanStringLength() {
         assertEquals("Hello", leftPad("Hello", 3, "*"), "Should return original string if size is less than length");
     }
-//+
+// + ok test, size=str.length() no padding
     @Test
     void testPadSizeEqualToStringLength() {
         assertEquals("Hello", leftPad("Hello", 5, "*"), "Should return original string if size equals length");
@@ -60,17 +60,17 @@ public class LeftPadTest {
     void testPadWithMultiCharacterPadStrSmallerThanPadLength() {
         assertEquals("aHi", leftPad("Hi", 3, "ab"), "Should truncate padStr to fit");
     }
-//4
+//duplicate of 4
     @Test
     void testPadWithMultiCharacterPadStrLargerThanPadLength() {
         assertEquals("ababaHi", leftPad("Hi", 7, "ab"), "Should repeat padStr to fill pads");
     }
-//9
+//duplicate of 4
     @Test
     void testPadWithSpacePadStr() {
         assertEquals("   Hi", leftPad("Hi", 5, " "), "Should pad with spaces when padStr is space");
     }
-//7
+//duplicate of 7
     @Test
     void testZeroSize() {
         assertEquals("Hi", leftPad("Hi", 0, "*"), "Should return original string if size is zero");
@@ -80,34 +80,38 @@ public class LeftPadTest {
     void testNegativeSize() {
         assertEquals("Hi", leftPad("Hi", -5, "*"), "Should return original string if size is negative");
     }
-//4
-//    @Test
-//    void testPadWithUnicodePadStr() {
-//        assertEquals("★☆★Hi", leftPad("Hi", 5, "★☆"), "Should repeat Unicode padStr correctly");
-//    }
+// + ok test padding unicode symbol
+/*    @Test
+    void testPadWithUnicodePadStr() {
+        assertEquals("★☆★Hi", leftPad("Hi", 5, "★☆"), "Should repeat Unicode padStr correctly");
+    }*/
 
-//6
+//duplicate of 6
     @Test
     void testPadWhenPadStrIsLongerThanPadsNeeded() {
         assertEquals("abHi", leftPad("Hi", 4, "abc"), "Should truncate padStr to required pad length");
     }
-//4
+//duplicate 4
     @Test
     void testPadStrLongerThanString() {
         assertEquals("abcabcHi", leftPad("Hi", 8, "abc"), "Should repeat padStr to reach total size");
     }
-//Duplicate of testPadSizeEqualToStringLength
+//duplicate of size=str.length() no padding
     @Test
     void testPadWhenNoPaddingIsNeeded() {
         assertEquals("Test", leftPad("Test", 4, "x"), "Should return original string when no padding needed");
     }
-//10
+//duplicate of 9
     @Test
     void testPadWithDefaultSpacePad() {
         assertEquals("   Test", leftPad("Test", 7, null), "Should pad with spaces when padStr is null");
     }
+// 17 generated assertions (with negatives)
+// 17 scenarios
+// 1 failing scenarios
+// 1,7,9,10,4,5,6,8 matched
+// 8 matches
+// 7 duplicates
+// 2 + [new] tests
 
 }
-
-//There are 10 test cases in Apache and 7 of them tested in generated ones as well
-//Tests 2,3,8 from apache are missing

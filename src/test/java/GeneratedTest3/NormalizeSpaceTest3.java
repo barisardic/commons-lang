@@ -20,12 +20,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class NormalizeSpaceTest3 {
 
 
-//2
+//1
     @Test
     void testNullInput() {
         assertNull(StringUtils.normalizeSpace(null), "Expected null input to return null");
     }
-//3
+//2
     @Test
     void testEmptyString() {
         assertEquals("", StringUtils.normalizeSpace(""), "Expected empty string to return empty");
@@ -34,50 +34,50 @@ public class NormalizeSpaceTest3 {
 
     @Test
     void testOnlyWhitespace() {
-        //4
+        //3
         assertEquals("", StringUtils.normalizeSpace("    "), "Expected spaces only to return empty");
-        //5,6,15
+        //4,5,8
         assertEquals("", StringUtils.normalizeSpace("\t\n\r "), "Expected mixed whitespace only to return empty");
     }
-//16
+//9
     @Test
     void testLeadingAndTrailingWhitespace() {
         assertEquals("abc", StringUtils.normalizeSpace("   abc   "), "Expected leading/trailing whitespace trimmed");
     }
-//17
+//10
     @Test
     void testInternalMultipleWhitespace() {
         assertEquals("a b c", StringUtils.normalizeSpace("a     b   c"), "Expected internal whitespace normalized to one space");
     }
-//+ Testing Single word without whitespace
+//+ ok test no whitespace
     @Test
     void testNoWhitespace() {
         assertEquals("abc", StringUtils.normalizeSpace("abc"), "Expected unchanged for no whitespace");
     }
-//5,6
+//duplicate
     @Test
     void testTabAndNewlineWhitespace() {
         assertEquals("a b c", StringUtils.normalizeSpace("a\tb\nc"), "Expected tabs/newlines normalized to space");
     }
-//+
+//duplicate of 12
     @Test
     void testNonBreakingSpace() {
         char nbsp = (char) 160;
         assertEquals("a b", StringUtils.normalizeSpace("a" + nbsp + "b"), "Expected non-breaking space to be replaced with normal space");
     }
-//5,6,15
+//duplicate
     @Test
     void testComplexMixedWhitespace() {
         String input = " \t a \n  b \r\n  c \t ";
         String expected = "a b c";
         assertEquals(expected, StringUtils.normalizeSpace(input), "Expected all types of whitespace normalized");
     }
-//17
+//+ok test, non-space special chars preserved
     @Test
     void testStringWithUnicodeCharacters() {
         assertEquals("á é ñ", StringUtils.normalizeSpace("á   é   ñ"), "Expected unicode preserved and whitespace normalized");
     }
-//+
+//12, correct test for non-breaking space (char160) is not whitespace
 /*    @Test
     void testStringWithSurroundingNonBreakingSpaces() {
         char nbsp = (char) 160;
@@ -86,19 +86,23 @@ public class NormalizeSpaceTest3 {
 
     @Test
     void testSingleCharacterWhitespace() {
-        //4
+        //duplicate of 3
         assertEquals("", StringUtils.normalizeSpace(" "), "Single space should return empty");
-        //5
+        //duplicate of 4
         assertEquals("", StringUtils.normalizeSpace("\t"), "Single tab should return empty");
     }
-//16
+//+ ok test already normalized string (verifies idempotency)
     @Test
     void testAlreadyNormalizedString() {
         assertEquals("a b c", StringUtils.normalizeSpace("a b c"), "Already normalized string should remain unchanged");
     }
 }
-//Number of test:13
-//Number of test match:8
-//New test scenarios:3
-//Number duplicate:9
+//15  generated assertions (with negatives)
+// 15 scenarios
+// 1 failing scenarios
+// 1,2,3,4,5,8,9,10,12 matched
+// 9 matches
+// 5 duplicates
+// 3 + [new] tests
+
 

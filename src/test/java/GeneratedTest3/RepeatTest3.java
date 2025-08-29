@@ -42,13 +42,13 @@ public class RepeatTest3 {
     public void testRepeat_EmptyString() {
         assertEquals("", StringUtils.repeat("", 10));
     }
-//+ Tests single-repetition edge case
+//+ ok test, count is 1, same string returned
     @Test
     public void testRepeat_SingleCount() {
         assertEquals("abc", StringUtils.repeat("abc", 1));
     }
-
-//+ Tests PAD_LIMIT boundary, bad test case
+//8
+//
 //    @Test
 //    public void testRepeat_SingleCharBelowPadLimit() {
 //        for (int i = 1; i <= 10; i++) {
@@ -56,8 +56,8 @@ public class RepeatTest3 {
 //        }
 //    }
 
-
-//+ Tests above PAD_LIMIT boundary, bad test case
+//+ ok test, above pad limit
+//
 //    @Test
 //    public void testRepeat_SingleCharAbovePadLimit() {
 //        int highCount = PAD_LIMIT + 100;
@@ -66,29 +66,33 @@ public class RepeatTest3 {
 //    }
 
 
-//6
+
     @Test
     public void testRepeat_TwoCharString() {
+        //6
         assertEquals("abababab", StringUtils.repeat("ab", 4));
+        //duplicate of 6
         assertEquals("cdcdcd", StringUtils.repeat("cd", 3));
     }
-//7
+
     @Test
     public void testRepeat_MultiCharString() {
+        //7
         assertEquals("helloworldhelloworld", StringUtils.repeat("helloworld", 2));
+        // duplicate of 7
         assertEquals("xyzxyzxyzxyz", StringUtils.repeat("xyz", 4));
     }
-    //+ Tries to test special, bad test case
+// + ok test special chars
     @Test
     public void testRepeat_SpecialCharacters() {
         assertEquals("!@#!@#!@#", StringUtils.repeat("!@#", 3));
     }
-    //+ Tries to test unicode but input is not unicode, bad test case
+//4, fails to test unicode therefore its just 4
     @Test
     public void testRepeat_UnicodeCharacters() {
         assertEquals("???", StringUtils.repeat("?", 3));
     }
-    //+ 8,9 (semantically its one case, which the long string scenario)
+//duplicate of 7
     @Test
     public void testRepeat_LongString() {
         String unit = "abcdef";
@@ -100,8 +104,12 @@ public class RepeatTest3 {
         assertEquals(expected.toString(), StringUtils.repeat(unit, count));
     }
 }
-//Number of test:14
-//Number of test match:8
-//New test scenarios:4
-//Number duplicate:0
+
+// 14 generated assertions (with negatives)
+// 14 scenarios
+// 2 failing scenarios
+// 1,5,2,3,8,6,7,4 matched
+// 8 matches
+// 3 duplicates
+// 3 + [new] tests
 

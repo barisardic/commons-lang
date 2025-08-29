@@ -45,7 +45,7 @@ public class RepeatTest2 {
         void testRepeat_NegativeCount() {
             assertEquals("", StringUtils.repeat("abc", -3));
         }
-//+ Tests single-repetition edge case
+//+ ok test, count is 1, same string returned
         @Test
         void testRepeat_CountOne() {
             assertEquals("abc", StringUtils.repeat("abc", 1));
@@ -55,12 +55,12 @@ public class RepeatTest2 {
         void testRepeat_SingleCharacter_SmallCount() {
             assertEquals("aaa", StringUtils.repeat("a", 3));
         }
-//+ Tests PAD_LIMIT boundary, bad test case
+//8
         @Test
         void testRepeat_SingleCharacter_MaxPadLimit() {
             assertEquals(StringUtils.repeat('x', PAD_LIMIT), StringUtils.repeat("x", PAD_LIMIT));
         }
-//+ Tests above PAD_LIMIT boundary, bad test case
+//+ ok test, above pad limit
         @Test
         void testRepeat_SingleCharacter_AbovePadLimit() {
             assertEquals(StringUtils.repeat('x', PAD_LIMIT + 1), StringUtils.repeat("x", PAD_LIMIT + 1));
@@ -75,33 +75,35 @@ public class RepeatTest2 {
         void testRepeat_MultiCharacter() {
             assertEquals("xyzxyzxyz", StringUtils.repeat("xyz", 3));
         }
-//+ 8,9 (semantically its one case, which the long string scenario)
-//        @Test
-//        void testRepeat_LongString() {
-//            String input = "longstring";
-//            int count = 10;
-//            String expected = input.repeat(count);
-//            assertEquals(expected, StringUtils.repeat(input, count));
-//        }
+// duplicate of 7
+/*        @Test
+        void testRepeat_LongString() {
+            String input = "longstring";
+            int count = 10;
+            String expected = input.repeat(count);
+            assertEquals(expected, StringUtils.repeat(input, count));
+        }*/
 
-    // Duplicate of testRepeat_EmptyString
+//duplicate of 3
         @Test
         void testRepeat_InputLengthZero() {
             assertEquals("", StringUtils.repeat("", 10));
         }
-//+ Tries to test special, bad test case
+// + ok test special chars
         @Test
         void testRepeat_SpecialCharacters() {
             assertEquals("@!@!@!", StringUtils.repeat("@!", 3));
         }
-//+ Tries to test unicode but input is not unicode, bad test case
+//duplicate of 6, fails to test unicode therefore its just 6
         @Test
         void testRepeat_UnicodeCharacters() {
             assertEquals("??????", StringUtils.repeat("??", 3));
         }
     }
-//Number of test: 14
-//Number of test match: 9
-//Number of duplicate: 1
-//New test scenarios:5
-//Number of apache test:9
+// 14 generated assertions (with negatives)
+// 14 scenarios
+// 1 failing scenarios
+// 1,3,2,5,4,8,6,7 matched
+// 8 matches
+// 3 duplicates
+// 3 + [new] tests
