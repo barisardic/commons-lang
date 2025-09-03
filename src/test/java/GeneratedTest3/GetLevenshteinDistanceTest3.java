@@ -58,7 +58,7 @@ public class GetLevenshteinDistanceTest3 {
         void testBothStringsEmpty() {
             assertEquals(0, getLevenshteinDistance("", ""));
         }
-//+ ok test, testing letter sensitivity
+//+ ok test, testing case sensitivity
         @Test
         void testCaseSensitivity() {
             assertEquals(1, getLevenshteinDistance("Kitten", "kitten"));

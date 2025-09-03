@@ -91,7 +91,7 @@ public class NormalizeSpaceTest3 {
         //duplicate of 4
         assertEquals("", StringUtils.normalizeSpace("\t"), "Single tab should return empty");
     }
-//+ ok test already normalized string (verifies idempotency)
+//+ ok test already normalized string
     @Test
     void testAlreadyNormalizedString() {
         assertEquals("a b c", StringUtils.normalizeSpace("a b c"), "Already normalized string should remain unchanged");

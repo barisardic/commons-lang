@@ -99,7 +99,7 @@ void testIdenticalStrings() {
 // 4,2,1,3,6,8,5 matched
 // 7 matches
 // 1 duplicates
-// 3 + [new] tests
+// 4 + [new] tests
 
 }
 

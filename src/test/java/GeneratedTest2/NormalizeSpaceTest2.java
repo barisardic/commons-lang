@@ -58,7 +58,7 @@ public class NormalizeSpaceTest2 {
         void testMixedWhitespaceTypes() {
             assertEquals("a b c", StringUtils.normalizeSpace("  a \t b \n c  "));
         }
-//+ ok test already normalized string (verifies idempotency)
+//+ ok test already normalized string
         @Test
         void testNoChangeNeeded() {
             assertEquals("a b c", StringUtils.normalizeSpace("a b c"));

@@ -66,7 +66,7 @@ public class NormalizeSpaceTest {
     void testMultipleMixedWhitespaceSequences() {
         assertEquals("A B C D", normalizeSpace("  A\t\tB \n C   D  "), "Should normalize mixed whitespace sequences");
     }
-//+ ok test no space
+//+ ok test no whitespace
     @Test
     void testSingleWordNoWhitespace() {
         assertEquals("Hello", normalizeSpace("Hello"), "Should leave single word unchanged");
